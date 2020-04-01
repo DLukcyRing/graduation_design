@@ -21,4 +21,5 @@ public class UserService {
     public List<User> queryList() {
         return userMapper.queryList();
     }
+
 }

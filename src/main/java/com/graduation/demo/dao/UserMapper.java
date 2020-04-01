@@ -8,10 +8,6 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    int insert(User record);
-
-    int insertSelective(User record);
-
     List<User> queryList();
 
 }

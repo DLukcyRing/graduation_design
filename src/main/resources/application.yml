@@ -6,40 +6,40 @@ spring:
     name: graduation-design
   datasource:
     name: mysql_test
-    #»ù±¾ÊôĞÔ
+    #åŸºæœ¬å±æ€§
     url: jdbc:mysql://localhost:3306/gd_account?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE&serverTimezone=UTC&allowMultiQueries=true
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
-    #druidÏà¹ØÅäÖÃ
+    #druidç›¸å…³é…ç½®
     druid:
-      #¼à¿ØÍ³¼ÆÀ¹½ØµÄfilters
+      #ç›‘æ§ç»Ÿè®¡æ‹¦æˆªçš„filters
       filters: stat
-      #ÅäÖÃ³õÊ¼»¯´óĞ¡/×îĞ¡/×î´ó
+      #é…ç½®åˆå§‹åŒ–å¤§å°/æœ€å°/æœ€å¤§
       initial-size: 1
       min-idle: 1
       max-active: 20
-      #»ñÈ¡Á¬½ÓµÈ´ı³¬Ê±Ê±¼ä
+      #è·å–è¿æ¥ç­‰å¾…è¶…æ—¶æ—¶é—´
       max-wait: 60000
-      #¼ä¸ô¶à¾Ã½øĞĞÒ»´Î¼ì²â£¬¼ì²âĞèÒª¹Ø±ÕµÄ¿ÕÏĞÁ¬½Ó
+      #é—´éš”å¤šä¹…è¿›è¡Œä¸€æ¬¡æ£€æµ‹ï¼Œæ£€æµ‹éœ€è¦å…³é—­çš„ç©ºé—²è¿æ¥
       time-between-eviction-runs-millis: 60000
-      #Ò»¸öÁ¬½ÓÔÚ³ØÖĞ×îĞ¡Éú´æµÄÊ±¼ä
+      #ä¸€ä¸ªè¿æ¥åœ¨æ± ä¸­æœ€å°ç”Ÿå­˜çš„æ—¶é—´
       min-evictable-idle-time-millis: 300000
       validation-query: SELECT 'x'
       test-while-idle: true
       test-on-borrow: false
       test-on-return: false
-      #´ò¿ªPSCache£¬²¢Ö¸¶¨Ã¿¸öÁ¬½ÓÉÏPSCacheµÄ´óĞ¡¡£oracleÉèÎªtrue£¬mysqlÉèÎªfalse¡£·Ö¿â·Ö±í½Ï¶àÍÆ¼öÉèÖÃÎªfalse
+      #æ‰“å¼€PSCacheï¼Œå¹¶æŒ‡å®šæ¯ä¸ªè¿æ¥ä¸ŠPSCacheçš„å¤§å°ã€‚oracleè®¾ä¸ºtrueï¼Œmysqlè®¾ä¸ºfalseã€‚åˆ†åº“åˆ†è¡¨è¾ƒå¤šæ¨èè®¾ç½®ä¸ºfalse
       pool-prepared-statements: false
       max-pool-prepared-statement-per-connection-size: 20
 
 mybatis:
-  #Ó³ÉäÎÄ¼şËùÔÚÂ·¾¶
-  mapper-locations: classpath:com.graduationdesign.mapper/*.xml
-  #pojoÀàËùÔÚ°üÂ·¾¶
-  type-aliases-package: com.graduationdesign.demo.common.entity
+  #æ˜ å°„æ–‡ä»¶æ‰€åœ¨è·¯å¾„
+  mapper-locations: classpath:com/graduation/mapper/*.xml
+  #pojoç±»æ‰€åœ¨åŒ…è·¯å¾„
+  type-aliases-package: com.graduation.demo.common.entity
   configuration:
-    #ÅäÖÃÏî£º¿ªÆôÏÂ»®Ïßµ½ÍÕ·åµÄ×Ô¶¯×ª»». ×÷ÓÃ£º½«Êı¾İ¿â×Ö¶Î¸ù¾İÍÕ·å¹æÔò×Ô¶¯×¢Èëµ½¶ÔÏóÊôĞÔ¡£
+    #é…ç½®é¡¹ï¼šå¼€å¯ä¸‹åˆ’çº¿åˆ°é©¼å³°çš„è‡ªåŠ¨è½¬æ¢. ä½œç”¨ï¼šå°†æ•°æ®åº“å­—æ®µæ ¹æ®é©¼å³°è§„åˆ™è‡ªåŠ¨æ³¨å…¥åˆ°å¯¹è±¡å±æ€§ã€‚
     map-underscore-to-camel-case: true
 
 #pagehelper
@@ -51,5 +51,5 @@ pagehelper:
 
 logging:
   level:
-    #´òÓ¡SQLĞÅÏ¢
+    #æ‰“å°SQLä¿¡æ¯
     com.graduation.demo.dao: debug
