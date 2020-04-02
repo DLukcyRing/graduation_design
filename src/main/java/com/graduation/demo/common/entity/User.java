@@ -1,5 +1,7 @@
 package com.graduation.demo.common.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -123,6 +125,7 @@ public class User implements Serializable {
         this.updateby = updateby == null ? null : updateby.trim();
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone="GMT+8")
     public Date getCreatetime() {
         return createtime;
     }
@@ -131,6 +134,7 @@ public class User implements Serializable {
         this.createtime = createtime;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone="GMT+8")
     public Date getUpdatetime() {
         return updatetime;
     }
