@@ -16,4 +16,10 @@
   <sql id="Base_Column_List">
     ID, NAME, KEY, CANDELETE, CANVIEW, STATE, CREATEBY, UPDATEBY, CREATETIME, UPDATETIME
   </sql>
+
+  <select id="queryRoleByUserId" resultType="com.graduation.demo.common.entity.Role">
+    select
+    <include refid="Base_Column_List" />
+    from gd_role where ID = #{id}
+  </select>
 </mapper>

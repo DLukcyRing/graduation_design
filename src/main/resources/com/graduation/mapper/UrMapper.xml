@@ -9,4 +9,10 @@
   <sql id="Base_Column_List">
     ID, USERID, ROLEID
   </sql>
+
+  <select id="queryListByUserId" resultType="com.graduation.demo.common.entity.Ur">
+    select
+    <include refid="Base_Column_List" />
+    from gd_ur where USERID = #{userId}
+  </select>
 </mapper>

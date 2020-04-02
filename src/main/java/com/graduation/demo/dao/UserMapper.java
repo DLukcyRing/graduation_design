@@ -10,4 +10,5 @@ public interface UserMapper {
 
     List<User> queryList();
 
+    User queryUserByName(String userName);
 }

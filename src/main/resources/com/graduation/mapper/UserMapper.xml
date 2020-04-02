@@ -30,4 +30,11 @@
      order by CREATETIME desc
   </select>
 
+  <select id="queryUserByName" resultType="com.graduation.demo.common.entity.User">
+    select
+    <include refid="Base_Column_List" />
+    from gd_user
+    where STATE = 'PUB' and ACCOUNT = #{userName}
+  </select>
+
 </mapper>
