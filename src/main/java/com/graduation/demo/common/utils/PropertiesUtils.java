@@ -47,15 +47,15 @@ public class PropertiesUtils {
             propMap = new HashMap();
         }
 
-        if(resourceName!=null && !"".equals(resourceName)){
+        if (resourceName != null && !"".equals(resourceName)) {
             filename = resourceName;
         }
 
         if (propMap.get(filename) == null) {
             PropertiesUtils propsUtil = new PropertiesUtils();
-            InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(rootPath+ File.separator +filename);
+            InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(rootPath + File.separator + filename);
             try {
-                if(is!=null){
+                if (is != null) {
                     propsUtil.load(is);
                 }
             } catch (IOException e) {
@@ -63,7 +63,7 @@ public class PropertiesUtils {
                 logger.error("读取配置文件conf.properties出错！", e);
             } finally {
                 try {
-                    if(is!=null){
+                    if (is != null) {
                         is.close();
                     }
                 } catch (IOException e) {
@@ -95,6 +95,7 @@ public class PropertiesUtils {
     /**
      * 根据key，取得对应的value值
      * 默认加载application.properties文件
+     *
      * @param key
      * @return
      */
@@ -116,11 +117,12 @@ public class PropertiesUtils {
 
     /**
      * 根据filename名称获取相应的值
+     *
      * @param filename
      * @param key
      * @return
      */
-    public static String getValue(String filename, String key){
+    public static String getValue(String filename, String key) {
         return getInstance(filename).getProperty(key);
     }
 

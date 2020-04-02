@@ -44,7 +44,6 @@ public class Md5Utils {
 
     // 可逆的加密算法
     public static String KL(String inStr) {
-        // String s = new String(inStr);
         char[] a = inStr.toCharArray();
         for (int i = 0; i < a.length; i++) {
             a[i] = (char) (a[i] ^ 't');

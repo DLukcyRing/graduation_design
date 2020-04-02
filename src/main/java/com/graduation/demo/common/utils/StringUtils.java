@@ -70,9 +70,6 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
                     // 调用getter方法获取属性值
                     String str = (String) methodGet.invoke(obj);
                     if (StringUtils.isBlank(str)) {
-                        // Method methodSet = clazz.getMethod("set" +
-                        // methodName, new Class[] { String.class });
-                        // methodSet.invoke(o, new Object[] { "" });
                         System.out.println(field.getType()); // class java.lang.String
                         // 如果为null的String类型的属性则重新复制为空字符串
                         field.set(obj, field.getType().getConstructor(field.getType()).newInstance(""));

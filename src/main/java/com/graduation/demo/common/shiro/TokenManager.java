@@ -1,8 +1,8 @@
-package com.graduation.demo.common.utils;
+package com.graduation.demo.common.shiro;
 
 import com.graduation.demo.common.entity.User;
-import com.graduation.demo.common.shiro.CustomRealm;
-import com.graduation.demo.common.shiro.CustomSessionManager;
+import com.graduation.demo.common.utils.Md5Utils;
+import com.graduation.demo.common.utils.SpringContextUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
@@ -64,7 +64,6 @@ public class TokenManager {
      */
     public static User login(User user, Boolean rememberMe) {
         UsernamePasswordToken token = new UsernamePasswordToken(user.getName(), Md5Utils.encode(user.getPassword()));
-        //ShiroToken token = new ShiroToken(user.getName(), Md5Utils.encode(user.getPassword()));
         token.setRememberMe(rememberMe);
         SecurityUtils.getSubject().login(token);
         return getToken();
