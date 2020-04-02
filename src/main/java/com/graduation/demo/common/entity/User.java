@@ -9,7 +9,7 @@ public class User implements Serializable {
 
     private String name;
 
-    private String account;
+    private String truename;
 
     private String password;
 
@@ -51,12 +51,12 @@ public class User implements Serializable {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getAccount() {
-        return account;
+    public String getTruename() {
+        return truename;
     }
 
-    public void setAccount(String account) {
-        this.account = account == null ? null : account.trim();
+    public void setTruename(String truename) {
+        this.truename = truename;
     }
 
     public String getPassword() {
@@ -155,7 +155,7 @@ public class User implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
-        sb.append(", account=").append(account);
+        sb.append(", truename=").append(truename);
         sb.append(", password=").append(password);
         sb.append(", candelete=").append(candelete);
         sb.append(", sex=").append(sex);

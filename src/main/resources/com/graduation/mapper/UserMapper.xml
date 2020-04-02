@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.graduation.demo.common.entity.User">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
-    <result column="ACCOUNT" jdbcType="VARCHAR" property="account" />
+    <result column="TRUENAME" jdbcType="VARCHAR" property="truename" />
     <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
     <result column="CANDELETE" jdbcType="VARCHAR" property="candelete" />
     <result column="SEX" jdbcType="VARCHAR" property="sex" />
@@ -18,7 +18,7 @@
     <result column="STATE" jdbcType="VARCHAR" property="state" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, NAME, ACCOUNT, PASSWORD, CANDELETE, SEX, EDU, DUTY, MARK, CREATEBY, UPDATEBY, 
+    ID, NAME, TRUENAME, PASSWORD, CANDELETE, SEX, EDU, DUTY, MARK, CREATEBY, UPDATEBY,
     CREATETIME, UPDATETIME, STATE
   </sql>
 
@@ -34,7 +34,7 @@
     select
     <include refid="Base_Column_List" />
     from gd_user
-    where STATE = 'PUB' and ACCOUNT = #{userName}
+    where STATE = 'PUB' and NAME = #{userName}
   </select>
 
 </mapper>
