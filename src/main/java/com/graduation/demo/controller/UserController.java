@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -17,6 +18,12 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView("user/userList");
+        return modelAndView;
+    }
 
     @ResponseBody
     @RequestMapping(value = "/queryList", method = RequestMethod.GET)
