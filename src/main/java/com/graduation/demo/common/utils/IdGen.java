@@ -2,7 +2,7 @@ package com.graduation.demo.common.utils;
 
 import java.util.UUID;
 
-public class UUIDUtils {
+public class IdGen {
 
     /**
      * 带-的UUID

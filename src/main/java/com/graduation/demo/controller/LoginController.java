@@ -10,6 +10,6 @@ public class LoginController {
 
     @RequestMapping(value = "")
     public ModelAndView login() {
-        return new ModelAndView("login");
+        return new ModelAndView("samples/login");
     }
 }
