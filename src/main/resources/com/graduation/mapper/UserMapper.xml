@@ -1,40 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.graduation.demo.dao.UserMapper">
-  <resultMap id="BaseResultMap" type="com.graduation.demo.common.entity.User">
-    <id column="ID" jdbcType="VARCHAR" property="id" />
-    <result column="NAME" jdbcType="VARCHAR" property="name" />
-    <result column="TRUENAME" jdbcType="VARCHAR" property="truename" />
-    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
-    <result column="CANDELETE" jdbcType="VARCHAR" property="candelete" />
-    <result column="SEX" jdbcType="VARCHAR" property="sex" />
-    <result column="EDU" jdbcType="VARCHAR" property="edu" />
-    <result column="DUTY" jdbcType="VARCHAR" property="duty" />
-    <result column="MARK" jdbcType="VARCHAR" property="mark" />
-    <result column="CREATEBY" jdbcType="VARCHAR" property="createby" />
-    <result column="UPDATEBY" jdbcType="VARCHAR" property="updateby" />
-    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="UPDATETIME" jdbcType="TIMESTAMP" property="updatetime" />
-    <result column="STATE" jdbcType="VARCHAR" property="state" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.graduation.demo.common.entity.User">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="TRUENAME" jdbcType="VARCHAR" property="truename"/>
+        <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
+        <result column="CANDELETE" jdbcType="VARCHAR" property="candelete"/>
+        <result column="SEX" jdbcType="VARCHAR" property="sex"/>
+        <result column="EDU" jdbcType="VARCHAR" property="edu"/>
+        <result column="DUTY" jdbcType="VARCHAR" property="duty"/>
+        <result column="MARK" jdbcType="VARCHAR" property="mark"/>
+        <result column="CREATEBY" jdbcType="VARCHAR" property="createby"/>
+        <result column="UPDATEBY" jdbcType="VARCHAR" property="updateby"/>
+        <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="UPDATETIME" jdbcType="TIMESTAMP" property="updatetime"/>
+        <result column="STATE" jdbcType="VARCHAR" property="state"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
     ID, NAME, TRUENAME, PASSWORD, CANDELETE, SEX, EDU, DUTY, MARK, CREATEBY, UPDATEBY,
     CREATETIME, UPDATETIME, STATE
   </sql>
 
-  <select id="queryList" resultType="com.graduation.demo.common.entity.User">
-    select
-    <include refid="Base_Column_List" />
-     from gd_user
-     where STATE = 'PUB'
-     order by CREATETIME desc
-  </select>
+    <select id="queryList" resultType="com.graduation.demo.common.entity.User">
+        select <include refid="Base_Column_List"/>
+        from gd_user
+        order by CREATETIME desc
+    </select>
 
-  <select id="queryUserByName" resultType="com.graduation.demo.common.entity.User">
-    select
-    <include refid="Base_Column_List" />
-    from gd_user
-    where STATE = 'PUB' and NAME = #{userName}
-  </select>
+    <select id="queryUserByName" resultType="com.graduation.demo.common.entity.User">
+        select
+        <include refid="Base_Column_List"/>
+        from gd_user
+        where NAME = #{userName}
+    </select>
+
+    <select id="queryUserById" resultType="com.graduation.demo.common.entity.User">
+        select
+        <include refid="Base_Column_List"/>
+        from gd_user
+        where ID = #{id}
+    </select>
+
+
+    <select id="selectUserByName" resultType="com.graduation.demo.common.entity.User">
+        select
+        <include refid="Base_Column_List"/>
+        from gd_user
+        where NAME = #{userName}
+    </select>
+
+    <insert id="addUser" parameterType="com.graduation.demo.common.entity.User">
+    INSERT INTO gd_user(ID,NAME,TRUENAME,PASSWORD,CANDELETE,SEX,EDU,DUTY,MARK,CREATEBY,UPDATEBY,CREATETIME,UPDATETIME,STATE)
+    VALUES (#{id},#{name},#{truename},#{password},#{candelete},#{sex},#{edu},#{duty},#{mark},#{createby},#{updateby},#{createtime},#{updatetime},#{state})
+  </insert>
+
+    <delete id="deleteUserById">
+        DELETE FROM gd_user WHERE ID = #{id}
+    </delete>
+
+    <update id="updateUserById" parameterType="com.graduation.demo.common.entity.User">
+        UPDATE gd_user SET NAME=#{name},TRUENAME=#{truename},PASSWORD=#{password},
+        CANDELETE=#{candelete},SEX=#{sex},EDU=#{edu},
+        DUTY=#{duty},MARK=#{mark},CREATEBY=#{createby},
+        UPDATEBY=#{updateby},CREATETIME=#{createtime},UPDATETIME=#{updatetime},STATE=#{state}
+         WHERE ID = #{id};
+    </update>
+
 
 </mapper>

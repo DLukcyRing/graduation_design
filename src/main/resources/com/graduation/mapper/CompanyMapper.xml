@@ -9,4 +9,31 @@
   <sql id="Base_Column_List">
     companyid, contact, telephone
   </sql>
+
+  <select id="queryList" resultType="com.graduation.demo.common.entity.Company">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM gd_company
+  </select>
+
+  <select id="queryCompanyById" resultType="com.graduation.demo.common.entity.Company">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM gd_company
+    WHERE companyid=#{id}
+  </select>
+
+  <insert id="addCompany" parameterType="com.graduation.demo.common.entity.Company">
+    INSERT INTO gd_company(companyid, contact, telephone)
+    VALUES (#{companyid}, #{contact}, #{telephone})
+  </insert>
+
+  <delete id="deleteCompanyById">
+    DELETE FROM gd_company WHERE companyid=#{id}
+  </delete>
+
+  <update id="updateCompanyById" parameterType="com.graduation.demo.common.entity.Company">
+    UPDATE gd_company SET companyid=#{companyid},contact=#{contact},telephone=#{telephone}
+    WHERE companyid=#{companyid}
+  </update>
 </mapper>

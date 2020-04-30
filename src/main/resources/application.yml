@@ -7,9 +7,9 @@ spring:
   datasource:
     name: mysql_test
     #基本属性
-    url: jdbc:mysql://localhost:3306/gd_account?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE&serverTimezone=UTC&allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/accountant_system?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE&serverTimezone=UTC&allowMultiQueries=true
     username: root
-    password: root
+    password: 12345678
     type: com.alibaba.druid.pool.DruidDataSource
     #druid相关配置
     druid:

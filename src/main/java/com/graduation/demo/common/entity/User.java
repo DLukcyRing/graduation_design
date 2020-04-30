@@ -11,31 +11,56 @@ public class User implements Serializable {
 
     private String name;
 
-    private String truename;
+    private String truename ="default";
 
     private String password;
 
-    private String candelete;
+    private String candelete ="1";
 
-    private String sex;
+    private String sex="1";
 
-    private String edu;
+    private String edu="1";
 
-    private String duty;
+    private String duty="1";
 
-    private String mark;
+    private String mark="1";
 
-    private String createby;
+    private String createby="admin";
 
-    private String updateby;
+    private String updateby="admin";
 
-    private Date createtime;
+    private Date createtime = new Date();
 
-    private Date updatetime;
+    private Date updatetime = new Date();
 
-    private String state;
+    private String state="PUB";
 
     private static final long serialVersionUID = 1L;
+
+    public User(){
+
+    }
+
+    public User(String id,String name,String truename,String password,String candelete,String sex,String edu,String duty,String mark,String createby,String updateby,Date createtime,Date updatetime,String state){
+        this.id = id;
+        this.name = name;
+        this.truename = name;
+        this.password = password;
+        this.candelete = candelete;
+        this.sex = sex;
+        this.edu = edu;
+        this.duty = duty;
+        this.mark = mark;
+        this.createby = createby;
+        this.updateby = updateby;
+        this.state = state;
+    }
+
+    public User(String id, String name,String password){
+        this.id = id;
+        this.name = name;
+        this.password = password;
+    }
 
     public String getId() {
         return id;
