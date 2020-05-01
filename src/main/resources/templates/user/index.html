@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Index page</h1><br>
+    <a href="/user/queryList">/QueryList</a><br>
+    <form action="/user/selectbyname" method="post">
+        <p>Select Name</p>
+        <input type="text" id="name1" name="name" placeholder="selectbyname">
+        <button type="submit" name="submit">提交</button>
+    </form>
+    <a href="/user/adduser">/Add User</a>
+    <form action="/user/deleteuser" method="post">
+        <p>Delete By ID</p>
+        <input type="text" id="id" name="id" placeholder="DeleteByID">
+        <button type="submit" name="submit2">提交</button>
+    </form>
+    <a href="/logout">/Logout</a>
+<a href="/company/index">/Company index</a>
+</body>
+</html>
