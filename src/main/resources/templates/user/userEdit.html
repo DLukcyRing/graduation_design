@@ -230,49 +230,65 @@
                         </li>
                     </ul>
                 </nav>
-                <!-- partial -->
-                <div class="main-panel">
-                    <div class="content-wrapper">
-                        <div class="row">
-                            <div class="col-lg-12 stretch-card">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">用户管理</h4>
-                                        <p class="card-description">
-                                            <a href="javascript:void(0)"><span>添加用户</span></a>
-                                        </p>
-                                        <div class="table-responsive pt-3">
-                                            <table class="table table-bordered" id="_table">
-                                                <thead>
-                                                <tr>
-                                                    <th>序号</th>
-                                                    <th>姓名</th>
-                                                    <th>是否在职</th>
-                                                    <th>性别</th>
-                                                    <th>操作</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr class="init-tr" th:each="resource, state : ${data}" th:data-id="${resource.id}">
-                                                    <td th:text="${state.index+1 < 10 ? '0'+(state.index+1):(state.index+1)}"></td>
-                                                    <td th:text="${resource.name}"></td>
-                                                    <td th:text="${resource.duty}"></td>
-                                                    <td th:text="${resource.sex}"></td>
-                                                    <td>
-                                                        <a href="/user/edit">
-                                                            <button class="btn btn-outline-primary btn-fw">修改</button>
-                                                        </a>
-                                                        <a href="/user/delete">
-                                                            <button class="btn btn-outline-danger btn-fw">删除</button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">新增用户</font></font></h4>
+                            <p class="card-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                            </font></font></p>
+                            <form class="forms-sample">
+                                <div class="form-group">
+                                    <label for="exampleInputUsername1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">账户名</font></font></label>
+                                    <input type="text" class="form-control" id="exampleInputUsername1" placeholder="账户名">
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">密码</font></font></label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputConfirmPassword1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">确认密码</font></font></label>
+                                    <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="密码">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户姓名</font></font></label>
+                                    <input type="text" class="form-control" id="exampleInputName" placeholder="用户姓名">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputSEX"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">性别</font></font></label>
+                                    <select class="form-control" id="exampleInputSEX" placeholder="性别">
+                                        <option selected>--请选择--</option>
+                                        <option value="1">男</option>
+                                        <option value="0">女</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEDU"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">学历</font></font></label>
+                                    <select class="form-control" id="exampleInputEDU" placeholder="学历">
+                                        <option selected>--请选择--</option>
+                                        <option value="0">高中</option>
+                                        <option value="1">大专</option>
+                                        <option value="2">本科</option>
+                                        <option value="3">硕士</option>
+                                        <option value="4">博士</option>
+                                        <option value="5">博士后</option>
+                                        <option value="6">其他</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputDuty"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是否在职</font></font></label>
+                                    <select class="form-control" id="exampleInputDuty" placeholder="是否在职">
+                                        <option selected>--请选择--</option>
+                                        <option value="1">是</option>
+                                        <option value="0">否</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputCompany"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属公司</font></font></label>
+                                    <input type="text" class="form-control" id="exampleInputCompany" placeholder="所属公司">
+                                </div>
+                                <button type="submit" class="btn btn-primary mr-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提交</font></font></button>
+                                <button class="btn btn-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button>
+                            </form>
                         </div>
                     </div>
                 </div>

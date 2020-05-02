@@ -11,55 +11,33 @@ public class User implements Serializable {
 
     private String name;
 
-    private String truename ="default";
+    private String account;
 
     private String password;
 
-    private String candelete ="1";
+    private String candelete;
 
-    private String sex="1";
+    private String sex;
 
-    private String edu="1";
+    private String edu;
 
-    private String duty="1";
+    private String duty;
 
-    private String mark="1";
+    private String mark;
 
-    private String createby="admin";
+    private String createby;
 
-    private String updateby="admin";
+    private String updateby;
 
-    private Date createtime = new Date();
+    private Date createtime;
 
-    private Date updatetime = new Date();
+    private Date updatetime;
 
-    private String state="PUB";
+    private String state;
 
     private static final long serialVersionUID = 1L;
 
-    public User(){
-
-    }
-
-    public User(String id,String name,String truename,String password,String candelete,String sex,String edu,String duty,String mark,String createby,String updateby,Date createtime,Date updatetime,String state){
-        this.id = id;
-        this.name = name;
-        this.truename = name;
-        this.password = password;
-        this.candelete = candelete;
-        this.sex = sex;
-        this.edu = edu;
-        this.duty = duty;
-        this.mark = mark;
-        this.createby = createby;
-        this.updateby = updateby;
-        this.state = state;
-    }
-
-    public User(String id, String name,String password){
-        this.id = id;
-        this.name = name;
-        this.password = password;
+    public User() {
     }
 
     public String getId() {
@@ -67,7 +45,7 @@ public class User implements Serializable {
     }
 
     public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+        this.id = id;
     }
 
     public String getName() {
@@ -75,15 +53,15 @@ public class User implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
-    public String getTruename() {
-        return truename;
+    public String getAccount() {
+        return account;
     }
 
-    public void setTruename(String truename) {
-        this.truename = truename;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String getPassword() {
@@ -91,7 +69,7 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
     public String getCandelete() {
@@ -99,7 +77,7 @@ public class User implements Serializable {
     }
 
     public void setCandelete(String candelete) {
-        this.candelete = candelete == null ? null : candelete.trim();
+        this.candelete = candelete;
     }
 
     public String getSex() {
@@ -107,7 +85,7 @@ public class User implements Serializable {
     }
 
     public void setSex(String sex) {
-        this.sex = sex == null ? null : sex.trim();
+        this.sex = sex;
     }
 
     public String getEdu() {
@@ -115,7 +93,7 @@ public class User implements Serializable {
     }
 
     public void setEdu(String edu) {
-        this.edu = edu == null ? null : edu.trim();
+        this.edu = edu;
     }
 
     public String getDuty() {
@@ -123,7 +101,7 @@ public class User implements Serializable {
     }
 
     public void setDuty(String duty) {
-        this.duty = duty == null ? null : duty.trim();
+        this.duty = duty;
     }
 
     public String getMark() {
@@ -131,7 +109,7 @@ public class User implements Serializable {
     }
 
     public void setMark(String mark) {
-        this.mark = mark == null ? null : mark.trim();
+        this.mark = mark;
     }
 
     public String getCreateby() {
@@ -139,7 +117,7 @@ public class User implements Serializable {
     }
 
     public void setCreateby(String createby) {
-        this.createby = createby == null ? null : createby.trim();
+        this.createby = createby;
     }
 
     public String getUpdateby() {
@@ -147,10 +125,9 @@ public class User implements Serializable {
     }
 
     public void setUpdateby(String updateby) {
-        this.updateby = updateby == null ? null : updateby.trim();
+        this.updateby = updateby;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone="GMT+8")
     public Date getCreatetime() {
         return createtime;
     }
@@ -159,7 +136,6 @@ public class User implements Serializable {
         this.createtime = createtime;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone="GMT+8")
     public Date getUpdatetime() {
         return updatetime;
     }
@@ -173,30 +149,30 @@ public class User implements Serializable {
     }
 
     public void setState(String state) {
-        this.state = state == null ? null : state.trim();
+        this.state = state;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", truename=").append(truename);
-        sb.append(", password=").append(password);
-        sb.append(", candelete=").append(candelete);
-        sb.append(", sex=").append(sex);
-        sb.append(", edu=").append(edu);
-        sb.append(", duty=").append(duty);
-        sb.append(", mark=").append(mark);
-        sb.append(", createby=").append(createby);
-        sb.append(", updateby=").append(updateby);
-        sb.append(", createtime=").append(createtime);
-        sb.append(", updatetime=").append(updatetime);
-        sb.append(", state=").append(state);
-        sb.append("]");
-        return sb.toString();
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", candelete='" + candelete + '\'' +
+                ", sex='" + sex + '\'' +
+                ", edu='" + edu + '\'' +
+                ", duty='" + duty + '\'' +
+                ", mark='" + mark + '\'' +
+                ", createby='" + createby + '\'' +
+                ", updateby='" + updateby + '\'' +
+                ", createtime=" + createtime +
+                ", updatetime=" + updatetime +
+                ", state='" + state + '\'' +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
 package com.graduation.demo.service;
 
 
+import com.github.pagehelper.PageInfo;
 import com.graduation.demo.common.entity.User;
 import com.graduation.demo.dao.UserMapper;
 import org.springframework.stereotype.Service;
@@ -21,16 +22,28 @@ public class UserService {
         return userMapper.queryList();
     }
 
-    public int addUser(User user){ return userMapper.addUser(user); }
+    public int addUser(User user) {
+        return userMapper.addUser(user);
+    }
 
-    public int deleteUserById(String id){ return userMapper.deleteUserById(id); }
+    public int deleteUserById(String id) {
+        return userMapper.deleteUserById(id);
+    }
 
-    public int updateUserById(User user){ return userMapper.updateUserById(user); }
+    public int updateUserById(User user) {
+        return userMapper.updateUserById(user);
+    }
 
-    public User queryUserByName(String userName){ return userMapper.queryUserByName(userName); }
+    public User queryUserByName(String userName) {
+        return userMapper.queryUserByName(userName);
+    }
 
-    public User queryUserById(String id){ return userMapper.queryUserById(id); }
+    public User queryUserById(String id) {
+        return userMapper.queryUserById(id);
+    }
 
-    public List<User> selectUserByName(String userName){ return userMapper.selectUserByName(userName); }
+    public List<User> selectUserByName(String userName) {
+        return userMapper.selectUserByName(userName);
+    }
 
 }
