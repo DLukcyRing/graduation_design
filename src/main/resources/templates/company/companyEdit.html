@@ -166,7 +166,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#user_side" data-toggle="collapse" aria-expanded="false" aria-controls="user_side">
                                 <i class="mdi mdi-home menu-icon"></i>
-                                <span class="menu-title">用户管理</span>
+                                <span class="menu-title">公司管理</span>
                                 <i class="menu-arrow"></i>
                             </a>
                             <div class="collapse" id="user_side">
@@ -230,49 +230,48 @@
                         </li>
                     </ul>
                 </nav>
-                <!-- partial -->
-                <div class="main-panel">
-                    <div class="content-wrapper">
-                        <div class="row">
-                            <div class="col-lg-12 stretch-card">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">用户管理</h4>
-                                        <p class="card-description">
-                                            <a href="javascript:void(0)"><span>添加用户</span></a>
-                                        </p>
-                                        <div class="table-responsive pt-3">
-                                            <table class="table table-bordered" id="_table">
-                                                <thead>
-                                                <tr>
-                                                    <th>序号</th>
-                                                    <th>姓名</th>
-                                                    <th>是否在职</th>
-                                                    <th>性别</th>
-                                                    <th>操作</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr class="init-tr" th:each="resource, state : ${data}" th:data-id="${resource.id}">
-                                                    <td th:text="${state.index+1 < 10 ? '0'+(state.index+1):(state.index+1)}"></td>
-                                                    <td th:text="${resource.name}"></td>
-                                                    <td th:text="${resource.duty}"></td>
-                                                    <td th:text="${resource.sex}"></td>
-                                                    <td>
-                                                        <a href="/user/edit">
-                                                            <button class="btn btn-outline-primary btn-fw">修改</button>
-                                                        </a>
-                                                        <a href="/user/delete">
-                                                            <button class="btn btn-outline-danger btn-fw">删除</button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">新增公司</font></font></h4>
+                            <p class="card-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                            </font></font></p>
+                            <form class="forms-sample">
+                                <div class="form-group">
+                                    <label for="exampleInputCompanyname1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">公司名称</font></font></label>
+                                    <input type="text" class="form-control" id="exampleInputCompanyname1" placeholder="公司名称">
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label for="exampleInputContact1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">法人</font></font></label>
+                                    <input type="text" class="form-control" id="exampleInputContact1" placeholder="法人">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputtelephone1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">联系电话</font></font></label>
+                                    <input type="password" class="form-control" id="exampleInputtelephone1" placeholder="联系电话">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputUSCC"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">社会统一信用代码</font></font></label>
+                                    <input type="text" class="form-control" id="exampleInputUSCC" placeholder="社会统一信用代码">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputaddress"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">地址</font></font></label>
+                                    <input type="text" class="form-control" id="exampleInputaddress" placeholder="地址">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputRegistered"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注册资金</font></font></label>
+                                    <input type="text" class="form-control" id="exampleInputRegistered" placeholder="注册资金">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputBusiness"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">经营范围</font></font></label>
+                                    <input type="text" class="form-control" id="exampleInputBusiness" placeholder="经营范围">
+                                </div>
+<!--                                <div class="form-group">-->
+<!--                                    <label for="exampleInputCompany"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属公司</font></font></label>-->
+<!--                                    <input type="text" class="form-control" id="exampleInputCompany" placeholder="所属公司">-->
+<!--                                </div>-->
+                                <button type="submit" class="btn btn-primary mr-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提交</font></font></button>
+                                <button class="btn btn-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button>
+                            </form>
                         </div>
                     </div>
                 </div>

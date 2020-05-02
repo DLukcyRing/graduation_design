@@ -43,4 +43,11 @@ public class CompanyController {
         Company company = companyService.queryCompanyById(id);
         return company.toString();
     }
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public ModelAndView addUser() {
+        return new ModelAndView("/company/companyEdit");
+    }
+
 }
+
