@@ -10,11 +10,7 @@ public class Role implements Serializable {
 
     private String name;
 
-    private String key;
-
     private String candelete;
-
-    private String canview;
 
     private String state;
 
@@ -44,28 +40,12 @@ public class Role implements Serializable {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key == null ? null : key.trim();
-    }
-
     public String getCandelete() {
         return candelete;
     }
 
     public void setCandelete(String candelete) {
         this.candelete = candelete == null ? null : candelete.trim();
-    }
-
-    public String getCanview() {
-        return canview;
-    }
-
-    public void setCanview(String canview) {
-        this.canview = canview == null ? null : canview.trim();
     }
 
     public String getState() {
@@ -92,7 +72,7 @@ public class Role implements Serializable {
         this.updateby = updateby == null ? null : updateby.trim();
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone="GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
     public Date getCreatetime() {
         return createtime;
     }
@@ -101,7 +81,7 @@ public class Role implements Serializable {
         this.createtime = createtime;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone="GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
     public Date getUpdatetime() {
         return updatetime;
     }
@@ -112,21 +92,15 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", key=").append(key);
-        sb.append(", candelete=").append(candelete);
-        sb.append(", canview=").append(canview);
-        sb.append(", state=").append(state);
-        sb.append(", createby=").append(createby);
-        sb.append(", updateby=").append(updateby);
-        sb.append(", createtime=").append(createtime);
-        sb.append(", updatetime=").append(updatetime);
-        sb.append("]");
-        return sb.toString();
+        return "Role{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", candelete='" + candelete + '\'' +
+                ", state='" + state + '\'' +
+                ", createby='" + createby + '\'' +
+                ", updateby='" + updateby + '\'' +
+                ", createtime=" + createtime +
+                ", updatetime=" + updatetime +
+                '}';
     }
 }

@@ -16,7 +16,7 @@ public class Ur implements Serializable {
     }
 
     public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+        this.id = id;
     }
 
     public String getUserid() {
@@ -24,7 +24,7 @@ public class Ur implements Serializable {
     }
 
     public void setUserid(String userid) {
-        this.userid = userid == null ? null : userid.trim();
+        this.userid = userid;
     }
 
     public String getRoleid() {
@@ -32,7 +32,7 @@ public class Ur implements Serializable {
     }
 
     public void setRoleid(String roleid) {
-        this.roleid = roleid == null ? null : roleid.trim();
+        this.roleid = roleid;
     }
 
     @Override

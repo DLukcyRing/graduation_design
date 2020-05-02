@@ -8,4 +8,8 @@ import java.util.List;
 @Mapper
 public interface UrMapper {
     List<Ur> queryListByUserId(String userId);
+
+    int insertByUserId(Ur ur);
+
+    void deleteByUserId(String userid);
 }

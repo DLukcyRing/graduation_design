@@ -5,11 +5,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>用户管理</title>
+        <link rel="shortcut icon" href="../static/images/favicon.png"/>
         <link rel="stylesheet" href="../static/vendors/mdi/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="../static/vendors/base/vendor.bundle.base.css">
         <link rel="stylesheet" href="../static/css/style.css">
         <link rel="stylesheet" href="../static/css/jquery.dataTables.min.css">
-        <link rel="shortcut icon" href="../static/images/favicon.png"/>
         <script src="../static/js/jquery-3.3.1.js"></script>
         <script src="../static/js/jquery.dataTables.js"></script>
         <script src="../static/vendors/base/vendor.bundle.base.js"></script>
@@ -17,6 +17,7 @@
         <script src="../static/js/hoverable-collapse.js"></script>
         <script src="../static/js/template.js"></script>
         <script src="../static/js/common.js"></script>
+        <script src="../static/js/base-modal.js"></script>
     </head>
     
     <body>
@@ -242,7 +243,7 @@
                                             <a href="javascript:void(0)"><span>添加用户</span></a>
                                         </p>
                                         <div class="table-responsive pt-3">
-                                            <table class="table table-bordered" id="_table">
+                                            <table class="table" id="_table">
                                                 <thead>
                                                 <tr>
                                                     <th>序号</th>
@@ -256,13 +257,16 @@
                                                 <tr class="init-tr" th:each="resource, state : ${data}" th:data-id="${resource.id}">
                                                     <td th:text="${state.index+1 < 10 ? '0'+(state.index+1):(state.index+1)}"></td>
                                                     <td th:text="${resource.name}"></td>
-                                                    <td th:text="${resource.duty}"></td>
-                                                    <td th:text="${resource.sex}"></td>
+                                                    <td th:text="${resource.duty} == 'Y' ? '是' : '否'"></td>
+                                                    <td th:text="${resource.sex} == '1' ? '男' : '女'"></td>
                                                     <td>
                                                         <a href="/user/edit">
                                                             <button class="btn btn-outline-primary btn-fw">修改</button>
                                                         </a>
-                                                        <a href="/user/delete">
+                                                        <a href="javascript:void(0)" onclick="addRole(this)">
+                                                            <button class="btn btn-outline-primary btn-fw" data-toggle="modal" data-target="#myModal">添加角色</button>
+                                                        </a>
+                                                        <a href="/user/delete" th:if="${resource.candelete} == 'Y'">
                                                             <button class="btn btn-outline-danger btn-fw">删除</button>
                                                         </a>
                                                     </td>
@@ -278,5 +282,66 @@
                 </div>
             </div>
         </div>
+        
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">添加权限</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <input hidden="hidden" value="" id="userId">
+                    </div>
+                    <div class="modal-body">
+                        <table class="table" id="pt-tree">
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="goSubmit()">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            $(function () {
+                $.ajax({
+                    url: "/role/getRole",
+                    async: true,
+                    success: function (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            var id = "tr_" + i;
+                            $("#pt-tree").append('<tr id="' + id + '"></tr>');
+                            $("#" + id).append('<div class="checkbox"><input type="checkbox" value="' + data[i].id + '"><font style="vertical-align: inherit;">' + data[i].name + '<font></div>');
+                        }
+                    }
+                })
+            });
+
+            function addRole(obj) {
+                var userId = $(obj).closest('tr').attr("data-id");
+                $("#userId").val(userId);
+            }
+
+            function goSubmit() {
+                var data = [];
+                $("#pt-tree").find('input').each(function () {
+                    if ($(this).prop('checked')) {
+                        data.push($(this).val());
+                    }
+                });
+                $.ajax({
+                    url: "/user/addUR",
+                    type: 'post',
+                    data: JSON.stringify({param: data, userId: $("#userId").val()}),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (data) {
+
+                    }
+                })
+            }
+        </script>
+    
     </body>
 </html>

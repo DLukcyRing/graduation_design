@@ -6,7 +6,6 @@
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="KEY" jdbcType="VARCHAR" property="key" />
     <result column="CANDELETE" jdbcType="VARCHAR" property="candelete" />
-    <result column="CANVIEW" jdbcType="VARCHAR" property="canview" />
     <result column="STATE" jdbcType="VARCHAR" property="state" />
     <result column="CREATEBY" jdbcType="VARCHAR" property="createby" />
     <result column="UPDATEBY" jdbcType="VARCHAR" property="updateby" />
@@ -14,7 +13,7 @@
     <result column="UPDATETIME" jdbcType="TIMESTAMP" property="updatetime" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, NAME, KEY, CANDELETE, CANVIEW, STATE, CREATEBY, UPDATEBY, CREATETIME, UPDATETIME
+    ID, NAME, CANDELETE, STATE, CREATEBY, UPDATEBY, CREATETIME, UPDATETIME
   </sql>
 
   <select id="queryRoleByUserId" resultType="com.graduation.demo.common.entity.Role">
@@ -22,4 +21,12 @@
     <include refid="Base_Column_List" />
     from gd_role where ID = #{id}
   </select>
+
+  <select id="queryList" resultType="com.graduation.demo.common.entity.Role">
+    select <include refid="Base_Column_List"/>
+    from gd_role
+    where STATE = 'PUB'
+    order by CREATETIME desc
+  </select>
+
 </mapper>

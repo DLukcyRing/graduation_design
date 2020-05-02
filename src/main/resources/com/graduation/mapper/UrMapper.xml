@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.graduation.demo.dao.UrMapper">
-  <resultMap id="BaseResultMap" type="com.graduation.demo.common.entity.Ur">
-    <id column="ID" jdbcType="VARCHAR" property="id" />
-    <result column="USERID" jdbcType="VARCHAR" property="userid" />
-    <result column="ROLEID" jdbcType="VARCHAR" property="roleid" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.graduation.demo.common.entity.Ur">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="USERID" jdbcType="VARCHAR" property="userid"/>
+        <result column="ROLEID" jdbcType="VARCHAR" property="roleid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     ID, USERID, ROLEID
   </sql>
 
-  <select id="queryListByUserId" resultType="com.graduation.demo.common.entity.Ur">
-    select
-    <include refid="Base_Column_List" />
-    from gd_ur where USERID = #{userId}
-  </select>
+    <select id="queryListByUserId" resultType="com.graduation.demo.common.entity.Ur">
+        select
+        <include refid="Base_Column_List"/>
+        from gd_ur where USERID = #{userId}
+    </select>
+
+    <insert id="insertByUserId" parameterType="com.graduation.demo.common.entity.Ur">
+        INSERT INTO gd_ur(
+        <include refid="Base_Column_List"/>
+        )
+        VALUES (#{id}, #{userid}, #{roleid})
+    </insert>
+
+    <delete id="deleteByUserId">
+        delete from gd_ur where USERID = #{userid}
+    </delete>
+
 </mapper>

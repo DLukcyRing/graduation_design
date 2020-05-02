@@ -10,4 +10,6 @@ import java.util.List;
 public interface RoleMapper {
 
     Role queryRoleByUrId(String id);
+
+    List<Role> queryList();
 }

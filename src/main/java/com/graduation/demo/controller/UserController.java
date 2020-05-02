@@ -4,7 +4,9 @@ import com.alibaba.druid.support.json.JSONUtils;
 import com.github.pagehelper.util.StringUtil;
 import com.graduation.demo.common.entity.User;
 import com.graduation.demo.common.utils.StringUtils;
+import com.graduation.demo.service.UrService;
 import com.graduation.demo.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,6 +20,9 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private UrService urService;
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index() {
@@ -43,4 +48,20 @@ public class UserController {
         return new ModelAndView("/user/userEdit");
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/addUR", method = RequestMethod.POST)
+    public String addUR(@RequestBody Map<String, Object> param) {
+        List<String> roleIds = (List<String>) param.get("param");
+        String userid = (String) param.get("userId");
+        urService.deleteByUserId(userid);
+        for (String roleid : roleIds) {
+            try {
+                urService.insertByUserId(roleid, userid);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "error";
+            }
+        }
+        return "success";
+    }
 }

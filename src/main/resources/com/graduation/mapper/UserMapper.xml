@@ -26,6 +26,7 @@
     <select id="queryList" resultType="com.graduation.demo.common.entity.User">
         select <include refid="Base_Column_List"/>
         from gd_user
+        where STATE = 'PUB'
         order by CREATETIME desc
     </select>
 

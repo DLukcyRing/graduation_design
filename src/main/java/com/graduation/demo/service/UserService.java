@@ -1,7 +1,6 @@
 package com.graduation.demo.service;
 
 
-import com.github.pagehelper.PageInfo;
 import com.graduation.demo.common.entity.User;
 import com.graduation.demo.dao.UserMapper;
 import org.springframework.stereotype.Service;
