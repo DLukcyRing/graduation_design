@@ -273,13 +273,13 @@
                                         <tbody>
                                         <tr class="init-tr" th:each="resource, state : ${data}" th:data-id="${resource.companyid}">
                                             <td th:text="${state.index+1 < 10 ? '0'+(state.index+1):(state.index+1)}"></td>
-                                            <td th:text="${resource.name}"></td>
+                                            <td th:text="${resource.companyname}"></td>
                                             <td th:text="${resource.contact}"></td>
                                             <td th:text="${resource.telephone}"></td>
                                             <td th:text="${resource.USCC}"></td>
                                             <td th:text="${resource.address}"></td>
-                                            <td th:text="${resource.registered}"></td>
-                                            <td th:text="${resource.business}"></td>
+                                            <td th:text="${resource.registeredCapital}"></td>
+                                            <td th:text="${resource.businessScope}"></td>
                                             <td>
                                                 <a href="/company/edit">
                                                     <button class="btn btn-outline-primary btn-fw">修改</button>

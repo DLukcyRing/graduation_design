@@ -9,15 +9,15 @@ public class Company implements Serializable {
 
     private Integer telephone;
 
-    private String name;
+    private String companyname;
 
     private String USCC;
 
     private String address;
 
-    private String registered;
+    private String registeredCapital;
 
-    private String business;
+    private String businessScope;
 
     private static final long serialVersionUID = 1L;
 
@@ -45,12 +45,12 @@ public class Company implements Serializable {
         this.telephone = telephone;
     }
 
-    public String getName() {
-        return name;
+    public String getCompanyname() {
+        return companyname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCompanyname(String companyname) {
+        this.companyname = companyname;
     }
 
     public String getUSCC() {
@@ -69,37 +69,33 @@ public class Company implements Serializable {
         this.address = address;
     }
 
-    public String getRegistered() {
-        return registered;
+    public String getRegisteredCapital() {
+        return registeredCapital;
     }
 
-    public void setRegistered(String registered) {
-        this.registered = registered;
+    public void setRegisteredCapital(String registeredCapital) {
+        this.registeredCapital = registeredCapital;
     }
 
-    public String getBusiness() {
-        return business;
+    public String getBusinessScope() {
+        return businessScope;
     }
 
-    public void setBusiness(String business) {
-        this.business = business;
+    public void setBusinessScope(String businessScope) {
+        this.businessScope = businessScope;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", companyid=").append(companyid);
-        sb.append(", contact=").append(contact);
-        sb.append(", telephone=").append(telephone);
-        sb.append(", name=").append(name);
-        sb.append(", USCC=").append(USCC);
-        sb.append(", address=").append(address);
-        sb.append(", registered=").append(registered);
-        sb.append(", business=").append(business);
-        sb.append("]");
-        return sb.toString();
+        return "Company{" +
+                "companyid='" + companyid + '\'' +
+                ", contact='" + contact + '\'' +
+                ", telephone=" + telephone +
+                ", companyname='" + companyname + '\'' +
+                ", USCC='" + USCC + '\'' +
+                ", address='" + address + '\'' +
+                ", registeredCapital='" + registeredCapital + '\'' +
+                ", businessScope='" + businessScope + '\'' +
+                '}';
     }
 }
