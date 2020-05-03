@@ -34,7 +34,7 @@
         select
         <include refid="Base_Column_List"/>
         from gd_user
-        where NAME = #{userName}
+        where ACCOUNT = #{userName}
     </select>
 
     <select id="queryUserById" resultType="com.graduation.demo.common.entity.User">

@@ -2,6 +2,7 @@ package com.graduation.demo.controller;
 
 import com.graduation.demo.common.entity.User;
 import com.graduation.demo.common.shiro.TokenManager;
+import com.graduation.demo.common.utils.Md5Utils;
 import com.graduation.demo.service.LoginService;
 import com.graduation.demo.service.UserService;
 import org.apache.shiro.SecurityUtils;
@@ -26,11 +27,6 @@ public class LoginController {
         return new ModelAndView("redirect:/login");
     }
 
-//    @GetMapping("/register")
-//    public String register(){
-//        return "samples/register";
-//    }
-
     @GetMapping("/login")
     public String login_get(){
         return "samples/login";
@@ -39,12 +35,12 @@ public class LoginController {
     @PostMapping("/login")
     @ResponseBody
     public ModelAndView loginVerify(String username, String password) {
-        System.out.println("username = " + username);
-        System.out.println("password = " + password);
         ModelAndView model = new ModelAndView();
         model.setViewName("/error/404");
         try{
-            UsernamePasswordToken token = new UsernamePasswordToken(username,password);
+            UsernamePasswordToken token = new UsernamePasswordToken(username, Md5Utils.encode(password));
+            System.out.println("username = " + username);
+            System.out.println("password = " + password);
             Subject subject = SecurityUtils.getSubject();
             subject.login(token);
         }catch (Exception e){
