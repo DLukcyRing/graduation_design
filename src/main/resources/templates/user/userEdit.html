@@ -237,7 +237,7 @@
                             <p class="card-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
                                 <input hidden="hidden" th:value="${data.id}">
                             </font></font></p>
-                            <form class="forms-sample">
+                            <form class="forms-sample" action="/user/addUser" method="post">
                                 <div class="form-group">
                                     <label for="exampleInputUsername1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">账户名</font></font></label>
                                     <input type="text" class="form-control" id="exampleInputUsername1" placeholder="账户名" th:value="${data.account}">

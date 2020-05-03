@@ -271,11 +271,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr class="init-tr" th:each="resource, state : ${data}" th:data-id="${resource.id}">
+                                        <tr class="init-tr" th:each="resource, state : ${data}" th:data-id="${resource.companyid}">
                                             <td th:text="${state.index+1 < 10 ? '0'+(state.index+1):(state.index+1)}"></td>
                                             <td th:text="${resource.name}"></td>
-                                            <td th:text="${resource.duty}"></td>
-                                            <td th:text="${resource.sex}"></td>
+                                            <td th:text="${resource.contact}"></td>
+                                            <td th:text="${resource.telephone}"></td>
+                                            <td th:text="${resource.USCC}"></td>
+                                            <td th:text="${resource.address}"></td>
+                                            <td th:text="${resource.registered}"></td>
+                                            <td th:text="${resource.business}"></td>
                                             <td>
                                                 <a href="/company/edit">
                                                     <button class="btn btn-outline-primary btn-fw">修改</button>
@@ -296,5 +300,13 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+
+    function editUser(obj) {
+        var companyId = $(obj).closest('tr').attr("data-id");
+        location.href = "/company/edit?companyId=" + companyId;
+    }
+
+</script>
 </body>
 </html>
