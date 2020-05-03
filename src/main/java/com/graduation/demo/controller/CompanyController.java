@@ -2,6 +2,7 @@ package com.graduation.demo.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.graduation.demo.common.entity.Company;
+import com.graduation.demo.common.entity.User;
 import com.graduation.demo.service.CompanyService;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -21,20 +22,12 @@ public class CompanyController {
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index() {
-        return new ModelAndView("/company/index");
+        ModelAndView model = new ModelAndView("/company/index");
+        List<Company> data = companyService.queryList();
+        model.addObject("data", data);
+        return model;
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/queryList", method = RequestMethod.GET)
-    public PageInfo<Company> queryList(){
-        List<Company> data = companyService.queryList();
-        PageInfo<Company> pageInfo = new PageInfo<>();
-        pageInfo.setList(data);
-        for (Company o:data) {
-            System.out.println(o.toString());
-        }
-        return pageInfo;
-    }
 
     @ResponseBody
     @RequestMapping(value = "/index", method = RequestMethod.POST)

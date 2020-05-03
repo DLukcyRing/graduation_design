@@ -2,9 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.graduation.demo.dao.CompanyMapper">
   <resultMap id="BaseResultMap" type="com.graduation.demo.common.entity.Company">
-    <id column="companyid" jdbcType="INTEGER" property="companyid" />
+    <id column="companyid" jdbcType="VARCHAR" property="companyid" />
     <result column="contact" jdbcType="VARCHAR" property="contact" />
     <result column="telephone" jdbcType="INTEGER" property="telephone" />
+    <result column="companyname" jdbcType="VARCHAR" property="name" />
+    <result column="USCC" jdbcType="VARCHAR" property="USCC" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="registered_capital" jdbcType="VARCHAR" property="registered" />
+    <result column="business_scope" jdbcType="VARCHAR" property="business" />
   </resultMap>
   <sql id="Base_Column_List">
     companyid, contact, telephone, name, USCC, address, registered, business
