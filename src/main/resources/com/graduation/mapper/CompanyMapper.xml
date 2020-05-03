@@ -5,14 +5,14 @@
     <id column="companyid" jdbcType="VARCHAR" property="companyid" />
     <result column="contact" jdbcType="VARCHAR" property="contact" />
     <result column="telephone" jdbcType="INTEGER" property="telephone" />
-    <result column="companyname" jdbcType="VARCHAR" property="name" />
+    <result column="companyname" jdbcType="VARCHAR" property="companyname" />
     <result column="USCC" jdbcType="VARCHAR" property="USCC" />
     <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="registered_capital" jdbcType="VARCHAR" property="registered" />
-    <result column="business_scope" jdbcType="VARCHAR" property="business" />
+    <result column="registered_capital" jdbcType="VARCHAR" property="registered_capital" />
+    <result column="business_scope" jdbcType="VARCHAR" property="business_scope" />
   </resultMap>
   <sql id="Base_Column_List">
-    companyid, contact, telephone, name, USCC, address, registered, business
+    companyid, contact, telephone, companyname, USCC, address, registered_capital, business_scope
   </sql>
 
   <select id="queryList" resultType="com.graduation.demo.common.entity.Company">
@@ -29,7 +29,9 @@
   </select>
 
   <insert id="addCompany" parameterType="com.graduation.demo.common.entity.Company">
-    INSERT INTO gd_company(companyid, contact, telephone, name, USCC, address, registered, business)
+    INSERT INTO gd_company(
+    <include refid="Base_Column_List" />
+    )
     VALUES (#{companyid}, #{contact}, #{telephone})
   </insert>
 
@@ -38,7 +40,16 @@
   </delete>
 
   <update id="updateCompanyById" parameterType="com.graduation.demo.common.entity.Company">
-    UPDATE gd_company SET companyid=#{companyid},contact=#{contact},telephone=#{telephone},name=#{name},USCC=#{USCC},address=#{address},registered=#{registered},business=#{business}
+    UPDATE gd_company
+    SET
+    companyid=#{companyid},
+    contact=#{contact},
+    telephone=#{telephone},
+    name=#{name},
+    USCC=#{USCC},
+    address=#{address},
+    registered=#{registered},
+    business=#{business}
     WHERE companyid=#{companyid}
   </update>
 </mapper>
