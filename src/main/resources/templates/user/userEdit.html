@@ -235,15 +235,16 @@
                         <div class="card-body">
                             <h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">新增用户</font></font></h4>
                             <p class="card-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                <input hidden="hidden" th:value="${data.id}">
                             </font></font></p>
                             <form class="forms-sample">
                                 <div class="form-group">
                                     <label for="exampleInputUsername1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">账户名</font></font></label>
-                                    <input type="text" class="form-control" id="exampleInputUsername1" placeholder="账户名">
+                                    <input type="text" class="form-control" id="exampleInputUsername1" placeholder="账户名" th:value="${data.account}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">密码</font></font></label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" th:value="${data.password}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputConfirmPassword1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">确认密码</font></font></label>
@@ -251,11 +252,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputName"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户姓名</font></font></label>
-                                    <input type="text" class="form-control" id="exampleInputName" placeholder="用户姓名">
+                                    <input type="text" class="form-control" id="exampleInputName" placeholder="用户姓名" th:value="${data.name}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputSEX"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">性别</font></font></label>
-                                    <select class="form-control" id="exampleInputSEX" placeholder="性别">
+                                    <select class="form-control" id="exampleInputSEX" placeholder="性别" th:sex="${data.sex}">
                                         <option selected>--请选择--</option>
                                         <option value="1">男</option>
                                         <option value="0">女</option>
@@ -263,7 +264,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEDU"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">学历</font></font></label>
-                                    <select class="form-control" id="exampleInputEDU" placeholder="学历">
+                                    <select class="form-control" id="exampleInputEDU" placeholder="学历" th:edu="${data.edu}">
                                         <option selected>--请选择--</option>
                                         <option value="0">高中</option>
                                         <option value="1">大专</option>
@@ -276,7 +277,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputDuty"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是否在职</font></font></label>
-                                    <select class="form-control" id="exampleInputDuty" placeholder="是否在职">
+                                    <select class="form-control" id="exampleInputDuty" placeholder="是否在职" th:duty="${data.duty}">
                                         <option selected>--请选择--</option>
                                         <option value="1">是</option>
                                         <option value="0">否</option>
@@ -294,5 +295,28 @@
                 </div>
             </div>
         </div>
+        
+        <script>
+            $(function () {
+                var sex = $("#exampleInputSEX").attr("sex");
+                $("#exampleInputSEX").children('option').each(function () {
+                    if ($(this).val() == sex) {
+                        $(this).attr("selected", "selected")
+                    }
+                })
+                var edu = $("#exampleInputEDU").attr("edu");
+                $("#exampleInputEDU").children('option').each(function () {
+                    if ($(this).val() == edu) {
+                        $(this).attr("selected", "selected")
+                    }
+                })
+                var duty = $("#exampleInputDuty").attr("duty");
+                $("#exampleInputDuty").children('option').each(function () {
+                    if ($(this).val() == duty) {
+                        $(this).attr("selected", "selected")
+                    }
+                })
+            })
+        </script>
     </body>
 </html>

@@ -7,6 +7,7 @@ import com.graduation.demo.common.utils.StringUtils;
 import com.graduation.demo.service.UrService;
 import com.graduation.demo.service.UserService;
 import org.apache.ibatis.annotations.Param;
+import org.apache.tomcat.util.http.RequestUtil;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,10 +33,9 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ModelAndView editByUserId(@RequestBody Map<String, String> param) {
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public ModelAndView editByUserId(@RequestParam(value = "userId") String id) {
         ModelAndView model = new ModelAndView("/user/userEdit");
-        String id = param.get("id");
         if (StringUtil.isNotEmpty(id)) {
             User data = userService.queryUserById(id);
             model.addObject("data", data);

@@ -1,8 +1,3 @@
-/**
- * 公用信息提示modal
- * 
- * Created by longhonwen on 2017/10/03.
- */
 /*
  * <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
  * 

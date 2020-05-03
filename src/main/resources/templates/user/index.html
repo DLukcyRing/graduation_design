@@ -260,7 +260,7 @@
                                                     <td th:text="${resource.duty} == 'Y' ? '是' : '否'"></td>
                                                     <td th:text="${resource.sex} == '1' ? '男' : '女'"></td>
                                                     <td>
-                                                        <a href="/user/edit">
+                                                        <a href="javascript:void(0)" onclick="editUser(this)">
                                                             <button class="btn btn-outline-primary btn-fw">修改</button>
                                                         </a>
                                                         <a href="javascript:void(0)" onclick="addRole(this)">
@@ -317,6 +317,11 @@
                     }
                 })
             });
+            
+            function editUser(obj) {
+                var userId = $(obj).closest('tr').attr("data-id");
+                location.href = "/user/edit?userId=" + userId;
+            }
 
             function addRole(obj) {
                 var userId = $(obj).closest('tr').attr("data-id");
@@ -337,7 +342,6 @@
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function (data) {
-
                     }
                 })
             }
