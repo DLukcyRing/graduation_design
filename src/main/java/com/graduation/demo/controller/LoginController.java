@@ -39,18 +39,13 @@ public class LoginController {
         model.setViewName("/error/404");
         try{
             UsernamePasswordToken token = new UsernamePasswordToken(username, Md5Utils.encode(password));
-            System.out.println("username = " + username);
-            System.out.println("password = " + password);
             Subject subject = SecurityUtils.getSubject();
             subject.login(token);
         }catch (Exception e){
             Throwable ex = e.getCause();
             if (ex instanceof IncorrectCredentialsException){
-                System.out.println("Password failed");
                 return model;
             }else {
-                System.out.println("\n\n"+e.getMessage()+"\n\n");
-                System.out.println("login Failed");
                 return model;
             }
         }
