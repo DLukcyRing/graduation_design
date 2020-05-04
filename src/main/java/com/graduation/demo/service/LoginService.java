@@ -32,7 +32,7 @@ public class LoginService {
         List<Ur> ur = urMapper.queryListByUserId(user.getId());
         List<Role> roles = new ArrayList<>();
         for (Ur entity : ur) {
-            roles.add(roleMapper.queryRoleByUrId(entity.getId()));
+            roles.add(roleMapper.queryListById(entity.getRoleid()));
         }
         Map<String, Object> map = new HashMap<>();
         map.put("user", user);

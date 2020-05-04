@@ -16,17 +16,17 @@
     ID, NAME, CANDELETE, STATE, CREATEBY, UPDATEBY, CREATETIME, UPDATETIME
   </sql>
 
-  <select id="queryRoleByUserId" resultType="com.graduation.demo.common.entity.Role">
-    select
-    <include refid="Base_Column_List" />
-    from gd_role where ID = #{id}
-  </select>
-
   <select id="queryList" resultType="com.graduation.demo.common.entity.Role">
     select <include refid="Base_Column_List"/>
     from gd_role
     where STATE = 'PUB'
     order by CREATETIME desc
+  </select>
+
+  <select id="queryListById" resultType="com.graduation.demo.common.entity.Role">
+    select
+    <include refid="Base_Column_List" />
+    from gd_role where ID = #{id} and STATE = 'PUB'
   </select>
 
 </mapper>

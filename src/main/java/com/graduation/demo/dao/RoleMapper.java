@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface RoleMapper {
 
-    Role queryRoleByUrId(String id);
-
     List<Role> queryList();
+
+    Role queryListById(String roleid);
 }

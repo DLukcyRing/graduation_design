@@ -1,6 +1,7 @@
 package com.graduation.demo.controller;
 
 import com.github.pagehelper.util.StringUtil;
+import com.graduation.demo.common.entity.Ur;
 import com.graduation.demo.common.entity.User;
 import com.graduation.demo.service.UrService;
 import com.graduation.demo.service.UserService;
@@ -110,5 +111,11 @@ public class UserController {
             }
         }
         return "success";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getRole", method = RequestMethod.POST)
+    public List<Ur> getRole(@RequestBody Map<String, Object> param) {
+        return urService.queryByUserId((String) param.get("userId"));
     }
 }

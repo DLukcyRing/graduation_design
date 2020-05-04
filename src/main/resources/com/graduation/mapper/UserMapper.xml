@@ -46,16 +46,25 @@
     </select>
     
     <update id="editUserById" parameterType="com.graduation.demo.common.entity.User">
-        update gd_user set NAME=#{name}, ACCOUNT=#{account}, PASSWORD=#{password}, SEX=#{sex}, EDU=#{edu}, DUTY=#{duty}, UPDATEBY=#{updateby}, UPDATETIME=#{updatetime}
+        update gd_user
+        set
+        NAME = #{name},
+        ACCOUNT = #{account},
+        PASSWORD = #{password},
+        SEX = #{sex},
+        EDU = #{edu},
+        DUTY = #{duty},
+        UPDATEBY = #{updateby},
         <if test="companyid != null and companyid != ''">
-            ,COMPANYID=#{companyid}
+            COMPANYID = #{companyid},
         </if>
-        where id=#{userid}
+        UPDATETIME = #{updatetime}
+        where ID = #{id}
     </update>
 
     <update id="deleteByUserId">
         update gd_user set STATE='DEL'
-        where id=#{userid}
+        where id = #{id}
     </update>
     
     <insert id="addUser" parameterType="com.graduation.demo.common.entity.User">
