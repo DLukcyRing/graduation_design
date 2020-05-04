@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="../static/css/style.css">
         <link rel="stylesheet" href="../static/css/jquery.dataTables.min.css">
         <link rel="shortcut icon" href="../static/images/favicon.png"/>
+        <link rel="stylesheet" href="../static/css/common.css">
         <script src="../static/js/jquery-3.3.1.js"></script>
         <script src="../static/js/jquery.dataTables.js"></script>
         <script src="../static/vendors/base/vendor.bundle.base.js"></script>
@@ -125,14 +126,13 @@
                 <div class="col-md-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">修改用户</font></font></h4>
+                            <h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">新增用户</font></font></h4>
                             <p class="card-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                                <input hidden="hidden" id="userid" th:value="${data.id}">
                             </font></font></p>
-                            <form class="forms-sample" action="/user/addUser" method="post">
+                            <form class="forms-sample" id="user_form">
                                 <div class="form-group">
                                     <label for="exampleInputUsername"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">账户名</font></font></label>
-                                    <input type="text" class="form-control" name="exampleInputUsername" id="exampleInputUsername" placeholder="账户名" th:value="${data.account}">
+                                    <input type="text" class="form-control" name="exampleInputUsername" id="exampleInputUsername" placeholder="账户名">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">密码</font></font></label>
@@ -144,11 +144,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputName"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户姓名</font></font></label>
-                                    <input type="text" class="form-control" name="exampleInputName" id="exampleInputName" placeholder="用户姓名" th:value="${data.name}">
+                                    <input type="text" class="form-control" name="exampleInputName" id="exampleInputName" placeholder="用户姓名">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputSEX"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">性别</font></font></label>
-                                    <select class="form-control" name="exampleInputSEX" id="exampleInputSEX" placeholder="性别" th:sex="${data.sex}" th:value="${data.sex}">
+                                    <select class="form-control" id="exampleInputSEX" name="exampleInputSEX" placeholder="性别">
                                         <option selected>--请选择--</option>
                                         <option value="1">男</option>
                                         <option value="0">女</option>
@@ -156,7 +156,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEDU"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">学历</font></font></label>
-                                    <select class="form-control" name="exampleInputEDU" id="exampleInputEDU" placeholder="学历" th:edu="${data.edu}" th:value="${data.sex}">
+                                    <select class="form-control" name="exampleInputEDU" id="exampleInputEDU" placeholder="学历">
                                         <option selected>--请选择--</option>
                                         <option value="0">高中</option>
                                         <option value="1">大专</option>
@@ -169,7 +169,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputDuty"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是否在职</font></font></label>
-                                    <select class="form-control" name="exampleInputDuty" id="exampleInputDuty" placeholder="是否在职" th:duty="${data.duty}" th:value="${data.sex}">
+                                    <select class="form-control" name="exampleInputDuty" id="exampleInputDuty" placeholder="是否在职">
                                         <option selected>--请选择--</option>
                                         <option value="1">是</option>
                                         <option value="0">否</option>
@@ -177,12 +177,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputCompany"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属公司</font></font></label>
-                                    <input type="text" class="form-control" name="exampleInputCompany" id="exampleInputCompany" placeholder="所属公司">
+                                    <select class="form-control" name="exampleInputCompany" id="exampleInputCompany" placeholder="所属公司">
+                                        <option selected>--请选择--</option>
+                                    </select>
                                 </div>
-                                <button type="button" class="btn btn-primary mr-2" onclick="goSummit()"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提交</font></font></button>
-                                <a href="/user/index">
-                                    <button type="button" class="btn btn-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button>
-                                </a>
+                                <button type="button" class="btn btn-primary mr-2" onclick="goSummit()"><font style="vertical-align: inherit;" onclick="goSummit()"><font style="vertical-align: inherit;">提交</font></font></button>
+                                <a href="/user/index"><button type="button" class="btn btn-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button></a>
                             </form>
                         </div>
                     </div>
@@ -191,25 +191,8 @@
         </div>
         
         <script>
+
             $(function () {
-                var sex = $("#exampleInputSEX").attr("sex");
-                $("#exampleInputSEX").children('option').each(function () {
-                    if ($(this).val() == sex) {
-                        $(this).attr("selected", "selected")
-                    }
-                })
-                var edu = $("#exampleInputEDU").attr("edu");
-                $("#exampleInputEDU").children('option').each(function () {
-                    if ($(this).val() == edu) {
-                        $(this).attr("selected", "selected")
-                    }
-                })
-                var duty = $("#exampleInputDuty").attr("duty");
-                $("#exampleInputDuty").children('option').each(function () {
-                    if ($(this).val() == duty) {
-                        $(this).attr("selected", "selected")
-                    }
-                })
                 Validate.validateForm("user_form");
 
                 $.ajax({
@@ -219,15 +202,14 @@
                         $("#tokenName").text(data);
                     }
                 })
-            })
+            });
 
             function goSummit() {
-                if ($("#userid").val() && $("#exampleInputUsername").val() && $("#exampleInputPassword").val() && $("#exampleInputName").val() && $("#exampleInputSEX").val() && $("#exampleInputEDU").val() && $("#exampleInputDuty").val()) {
+                if ($("#exampleInputUsername").val() && $("#exampleInputPassword").val() && $("#exampleInputName").val() && $("#exampleInputSEX").val() && $("#exampleInputEDU").val() && $("#exampleInputDuty").val()) {
                     $.ajax({
-                        url: "/user/edit",
+                        url: "/user/add",
                         type: 'post',
                         data: JSON.stringify({
-                            userid: $("#userid").val(),
                             username: $("#exampleInputUsername").val(),
                             password: $("#exampleInputPassword").val(),
                             name: $("#exampleInputName").val(),
@@ -239,6 +221,7 @@
                         dataType: 'json',
                         contentType: 'application/json',
                         success: function (data) {
+                            console.log(data)
                             if (data.code == 0) {
                                 location.href = "/user/index";
                             } else {

@@ -10,10 +10,14 @@ import java.util.List;
 public interface UserMapper {
 
     List<User> queryList();
+
     User queryUserByName(String userName);
-    List<User> selectUserByName(String userName);
+
     int addUser(User user);
-    int deleteUserById(String id);
-    int updateUserById(User user);
+
     User queryUserById(String id);
+
+    int editUserById(User user);
+
+    int deleteByUserId(String id);
 }

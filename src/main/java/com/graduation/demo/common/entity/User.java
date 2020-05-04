@@ -35,6 +35,16 @@ public class User implements Serializable {
 
     private String state;
 
+    private String companyid;
+
+    public String getCompanyid() {
+        return companyid;
+    }
+
+    public void setCompanyid(String companyid) {
+        this.companyid = companyid;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public User() {
@@ -173,6 +183,7 @@ public class User implements Serializable {
                 ", createtime=" + createtime +
                 ", updatetime=" + updatetime +
                 ", state='" + state + '\'' +
+                ", companyid='" + companyid + '\'' +
                 '}';
     }
 }

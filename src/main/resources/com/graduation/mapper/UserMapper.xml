@@ -16,18 +16,19 @@
         <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime"/>
         <result column="UPDATETIME" jdbcType="TIMESTAMP" property="updatetime"/>
         <result column="STATE" jdbcType="VARCHAR" property="state"/>
+        <result column="COMPANYID" jdbcType="VARCHAR" property="companyid"/>
     </resultMap>
 
     <sql id="Base_Column_List">
     ID, NAME, ACCOUNT, PASSWORD, CANDELETE, SEX, EDU, DUTY, MARK, CREATEBY, UPDATEBY,
-    CREATETIME, UPDATETIME, STATE
+    CREATETIME, UPDATETIME, STATE, COMPANYID
   </sql>
 
     <select id="queryList" resultType="com.graduation.demo.common.entity.User">
         select <include refid="Base_Column_List"/>
         from gd_user
         where STATE = 'PUB'
-        order by CREATETIME desc
+        order by CREATETIME ASC
     </select>
 
     <select id="queryUserByName" resultType="com.graduation.demo.common.entity.User">
@@ -43,31 +44,51 @@
         from gd_user
         where ID = #{id} and STATE = 'PUB'
     </select>
-
-
-    <select id="selectUserByName" resultType="com.graduation.demo.common.entity.User">
-        select
-        <include refid="Base_Column_List"/>
-        from gd_user
-        where NAME = #{userName}
-    </select>
-
-    <insert id="addUser" parameterType="com.graduation.demo.common.entity.User">
-    INSERT INTO gd_user(ID,NAME,ACCOUNT,PASSWORD,CANDELETE,SEX,EDU,DUTY,MARK,CREATEBY,UPDATEBY,CREATETIME,UPDATETIME,STATE)
-    VALUES (#{id},#{name},#{ACCOUNT},#{password},#{candelete},#{sex},#{edu},#{duty},#{mark},#{createby},#{updateby},#{createtime},#{updatetime},#{state})
-  </insert>
-
-    <delete id="deleteUserById">
-        DELETE FROM gd_user WHERE ID = #{id}
-    </delete>
-
-    <update id="updateUserById" parameterType="com.graduation.demo.common.entity.User">
-        UPDATE gd_user SET NAME=#{name},ACCOUNT=#{ACCOUNT},PASSWORD=#{password},
-        CANDELETE=#{candelete},SEX=#{sex},EDU=#{edu},
-        DUTY=#{duty},MARK=#{mark},CREATEBY=#{createby},
-        UPDATEBY=#{updateby},CREATETIME=#{createtime},UPDATETIME=#{updatetime},STATE=#{state}
-         WHERE ID = #{id};
+    
+    <update id="editUserById" parameterType="com.graduation.demo.common.entity.User">
+        update gd_user set NAME=#{name}, ACCOUNT=#{account}, PASSWORD=#{password}, SEX=#{sex}, EDU=#{edu}, DUTY=#{duty}, UPDATEBY=#{updateby}, UPDATETIME=#{updatetime}
+        <if test="companyid != null and companyid != ''">
+            ,COMPANYID=#{companyid}
+        </if>
+        where id=#{userid}
     </update>
 
-
+    <update id="deleteByUserId">
+        update gd_user set STATE='DEL'
+        where id=#{userid}
+    </update>
+    
+    <insert id="addUser" parameterType="com.graduation.demo.common.entity.User">
+    INSERT INTO gd_user(
+    ID,
+    NAME,
+    ACCOUNT,
+    PASSWORD,
+    CANDELETE,
+    SEX,
+    EDU,
+    DUTY,
+    CREATEBY,
+    UPDATEBY,
+    CREATETIME,
+    UPDATETIME,
+    STATE
+    )
+    VALUES (
+    #{id},
+    #{name},
+    #{account},
+    #{password},
+    #{candelete},
+    #{sex},
+    #{edu},
+    #{duty},
+    #{createby},
+    #{updateby},
+    #{createtime},
+    #{updatetime},
+    #{state}
+    )
+  </insert>
+    
 </mapper>

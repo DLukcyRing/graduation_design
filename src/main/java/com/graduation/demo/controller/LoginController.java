@@ -1,26 +1,24 @@
 package com.graduation.demo.controller;
 
 import com.graduation.demo.common.entity.User;
-import com.graduation.demo.common.shiro.TokenManager;
 import com.graduation.demo.common.utils.Md5Utils;
-import com.graduation.demo.service.LoginService;
 import com.graduation.demo.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
+import javax.annotation.Resource;
+
 
 @Controller
 public class LoginController {
 
-    @Autowired
-    private  LoginService loginService;
+    @Resource
+    private UserService userService;
 
     @GetMapping("/")
     public ModelAndView index(){
@@ -62,5 +60,12 @@ public class LoginController {
             subject.logout();
         }
         return new ModelAndView("redirect:/login");
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/login/getToken", method = RequestMethod.GET)
+    public String getToken() {
+        User user = userService.queryUserByName((String) SecurityUtils.getSubject().getPrincipal());
+        return user.getName();
     }
 }
