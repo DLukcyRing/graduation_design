@@ -46,7 +46,6 @@ public class UserService {
         if (param.get("company") != null) {
             user.setCompanyid((String) param.get("company"));
         }
-        System.out.println(user.toString());
         return userMapper.addUser(user) > 0;
     }
 
