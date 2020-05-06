@@ -50,10 +50,8 @@ public class CustomRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        System.out.println("-------身份认证方法--------");
         String userName = (String) authenticationToken.getPrincipal();
         String userPwd = new String((char[]) authenticationToken.getCredentials());
-        //根据用户名从数据库获取密码
         Map<String, Object> map = loginService.getUserByName(userName);
         User user = (User) map.get("user");
         String password = user.getPassword();
