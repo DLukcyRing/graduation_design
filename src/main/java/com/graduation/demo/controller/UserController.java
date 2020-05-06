@@ -109,7 +109,6 @@ public class UserController {
                 map.put("message", "新增失败");
             }
         }
-        System.out.println();
         return map;
     }
 

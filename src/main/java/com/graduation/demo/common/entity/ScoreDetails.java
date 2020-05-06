@@ -11,15 +11,15 @@ public class ScoreDetails implements Serializable {
 
     private Double score;
 
-    private Integer checkerid;
+    private String checkerid;
 
-    private Integer registrarid;
+    private String registrarid;
 
     private Integer plead;
 
-    private Integer checkerid2;
+    private String checkerid2;
 
-    private Integer approvalid;
+    private String approvalid;
 
     private static final long serialVersionUID = 1L;
 
@@ -55,19 +55,19 @@ public class ScoreDetails implements Serializable {
         this.score = score;
     }
 
-    public Integer getCheckerid() {
+    public String getCheckerid() {
         return checkerid;
     }
 
-    public void setCheckerid(Integer checkerid) {
+    public void setCheckerid(String checkerid) {
         this.checkerid = checkerid;
     }
 
-    public Integer getRegistrarid() {
+    public String getRegistrarid() {
         return registrarid;
     }
 
-    public void setRegistrarid(Integer registrarid) {
+    public void setRegistrarid(String registrarid) {
         this.registrarid = registrarid;
     }
 
@@ -79,19 +79,19 @@ public class ScoreDetails implements Serializable {
         this.plead = plead;
     }
 
-    public Integer getCheckerid2() {
+    public String getCheckerid2() {
         return checkerid2;
     }
 
-    public void setCheckerid2(Integer checkerid2) {
+    public void setCheckerid2(String checkerid2) {
         this.checkerid2 = checkerid2;
     }
 
-    public Integer getApprovalid() {
+    public String getApprovalid() {
         return approvalid;
     }
 
-    public void setApprovalid(Integer approvalid) {
+    public void setApprovalid(String approvalid) {
         this.approvalid = approvalid;
     }
 

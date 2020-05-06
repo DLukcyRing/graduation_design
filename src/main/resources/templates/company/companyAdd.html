@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>用户管理</title>
+    <link rel="stylesheet" href="../static/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../static/vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/jquery.dataTables.min.css">
+    <link rel="shortcut icon" href="../static/images/favicon.png"/>
+    <link rel="stylesheet" href="../static/css/common.css">
+    <script src="../static/js/jquery-3.3.1.js"></script>
+    <script src="../static/js/jquery.dataTables.js"></script>
+    <script src="../static/vendors/base/vendor.bundle.base.js"></script>
+    <script src="../static/js/off-canvas.js"></script>
+    <script src="../static/js/hoverable-collapse.js"></script>
+    <script src="../static/js/template.js"></script>
+    <script src="../static/js/common.js"></script>
+    <script src="../static/js/jquery.validate.min.js"></script>
+    <script src="../static/js/bootbox.all.min.js"></script>
+</head>
+
+<body>
+<div class="container-scroller">
+    <div id="top"></div>
+    <div class="container-fluid page-body-wrapper">
+        <div id="side"></div>
+        <script>
+            $("#top").load("../common/top.html");
+            $("#side").load("../common/side.html");
+        </script>
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">新增公司</font></font></h4>
+                    <p class="card-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                    </font></font></p>
+                    <form class="forms-sample" id="user_form">
+                        <div class="form-group">
+                            <label for="exampleInputCompanyname"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">公司名称</font></font></label>
+                            <input type="text" class="form-control" name="exampleInputCompanyname" id="exampleInputCompanyname" placeholder="公司名称">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputContact"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">法人</font></font></label>
+                            <input type="text" class="form-control" name="exampleInputContact" id="exampleInputContact" placeholder="法人">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputTelephone"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">电话</font></font></label>
+                            <input type="text" class="form-control" name="exampleInputTelephone" id="exampleInputTelephone" placeholder="电话">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUscc"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">社会统一信用代码</font></font></label>
+                            <input type="text" class="form-control" name="exampleInputUscc" id="exampleInputUscc" placeholder="社会统一信用代码">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputAddress"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">地址</font></font></label>
+                            <input type="text" class="form-control" name="exampleInputAddress" id="exampleInputAddress" placeholder="地址">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputRegistered"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注册资金</font></font></label>
+                            <input type="text" class="form-control" name="exampleInputRegistered" id="exampleInputRegistered" placeholder="注册资金">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputBusinessscope"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">经营范围</font></font></label>
+                            <input type="text" class="form-control" name="exampleInputBusinessscope" id="exampleInputBusinessscope" placeholder="经营范围">
+                        </div>
+                        <button type="button" class="btn btn-primary mr-2" onclick="goSummit()"><font style="vertical-align: inherit;">提交</font></button>
+                        <a href="/user/index"><button type="button" class="btn btn-light"><font style="vertical-align: inherit;">取消</font></button></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<input id="companyListData" type="hidden" th:value="${company}">-->
+<script >
+
+    $(function () {
+        Validate.validateForm("user_form");
+        // var companyList = JSON.parse(decodeURI($('#companyListData').val()));
+    });
+
+    function goSummit() {
+        if ($("#exampleInputCompanyname").val() && $("#exampleInputContact").val() && $("#exampleInputTelephone").val() && $("#exampleInputUscc").val() && $("#exampleInputAddress").val() && $("#exampleInputRegistered").val() && $("#exampleInputBusinessscope").val()) {
+            $.ajax({
+                url: "/company/add",
+                type: 'post',
+                data: JSON.stringify({
+                    companyname: $("#exampleInputCompanyname").val(),
+                    contact: $("#exampleInputContact").val(),
+                    telephone: $("#exampleInputTelephone").val(),
+                    USCC: $("#exampleInputUscc").val(),
+                    address: $("#exampleInputAddress").val(),
+                    registered: $("#exampleInputRegistered").val(),
+                    businessscope: $("#exampleInputBusinessscope").val()
+                }),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log(data)
+                    if (data.code == 0) {
+                        location.href = "/company/index";
+                    } else {
+                        bootbox.alert({
+                            size: "small",
+                            title: "错误信息",
+                            message: data.message,
+                            callback: function () {
+
+                            }
+                        })
+                    }
+                }
+            })
+        } else {
+            bootbox.alert({
+                size: "small",
+                title: "错误信息",
+                message: "参数不能为空",
+                callback: function () {
+
+                }
+            })
+        }
+    }
+
+    var Validate = function () {
+        var handlerValidate = function (formId, rules) {
+            $("#" + formId).validate({
+                errorElement: 'span',
+                errorClass: 'errorInfo',
+                errorPlacement: function (error, element) {
+                    element.parent().parent().attr("class", "form-group has-error");
+                    error.insertAfter(element);
+                },
+                rules: {
+                    exampleInputCompanyname: {
+                        required: true
+                    },
+                    exampleInputContact: {
+                        required: true
+                    },
+                    exampleInputTelephone: {
+                        required: true,
+                    },
+                    exampleInputUscc: {
+                        required: true
+                    },
+                    exampleInputAddress: {
+                        required: true
+                    },
+                    exampleInputRegistered: {
+                        required: true
+                    },
+                    exampleInputBusinessscope: {
+                        required: true
+                    }
+                }
+            });
+        };
+
+        return {
+            validateForm: function (formId, rules) {
+                handlerValidate(formId, rules);
+            }
+        }
+    }();
+</script>
+</body>
+</html>

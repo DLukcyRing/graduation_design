@@ -1,48 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.graduation.demo.dao.ScoreDetailsMapper">
-  <resultMap id="BaseResultMap" type="com.graduation.demo.common.entity.ScoreDetails">
-    <id column="identifier" jdbcType="INTEGER" property="identifier" />
-    <result column="userid" jdbcType="VARCHAR" property="userid" />
-    <result column="add/reduce" jdbcType="INTEGER" property="addReduce" />
-    <result column="score" jdbcType="DOUBLE" property="score" />
-    <result column="checkerid" jdbcType="INTEGER" property="checkerid" />
-    <result column="registrarid" jdbcType="INTEGER" property="registrarid" />
-    <result column="plead" jdbcType="INTEGER" property="plead" />
-    <result column="checkerid2" jdbcType="INTEGER" property="checkerid2" />
-    <result column="approvalid" jdbcType="INTEGER" property="approvalid" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    identifier, userid, 'add/reduce', score, checkerid, registrarid, plead, checkerid2,
+    <resultMap id="BaseResultMap" type="com.graduation.demo.common.entity.ScoreDetails">
+        <id column="identifier" jdbcType="INTEGER" property="identifier"/>
+        <result column="userid" jdbcType="VARCHAR" property="userid"/>
+        <result column="addReduce" jdbcType="INTEGER" property="addReduce"/>
+        <result column="score" jdbcType="DOUBLE" property="score"/>
+        <result column="checkerid" jdbcType="VARCHAR" property="checkerid"/>
+        <result column="registrarid" jdbcType="VARCHAR" property="registrarid"/>
+        <result column="plead" jdbcType="INTEGER" property="plead"/>
+        <result column="checkerid2" jdbcType="VARCHAR" property="checkerid2"/>
+        <result column="approvalid" jdbcType="VARCHAR" property="approvalid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    identifier, userid, addReduce, score, checkerid, registrarid, plead, checkerid2,
     approvalid
   </sql>
 
-  <select id="queryList" resultType="com.graduation.demo.common.entity.ScoreDetails">
-    SELECT
-    <include refid="Base_Column_List"/>
-    FROM gd_score_details
-  </select>
+    <select id="queryList" resultType="com.graduation.demo.common.entity.ScoreDetails">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM gd_score_details
+    </select>
 
-  <select id="selectScoreDetailsById" resultType="com.graduation.demo.common.entity.ScoreDetails">
-    SELECT
-    <include refid="Base_Column_List"/>
-    FROM gd_score_details
-    WHERE USERID=#{userId}
-  </select>
+    <select id="selectScoreDetailsById" resultType="com.graduation.demo.common.entity.ScoreDetails">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM gd_score_details
+        WHERE USERID=#{userId}
+    </select>
 
-  <insert id="addScoreDetails" parameterType="com.graduation.demo.common.entity.ScoreDetails">
-    INSERT INTO gd_score_details(userid, `add/reduce`, score, checkerid, registrarid, plead, checkerid2, approvalid)
-    VALUES (#{userid}, #{addReduce}, #{score}, #{checkerid}, #{registrarid}, #{plead}, #{checkerid2}, #{approvalid})
+    <insert id="addScoreDetails" parameterType="com.graduation.demo.common.entity.ScoreDetails">
+    INSERT INTO gd_score_details(userid, `add/reduce`, score, registrarid)
+    VALUES (#{userid}, #{addReduce}, #{score}, #{registrarid})
   </insert>
 
-  <delete id="deleteScoreDetailsById">
+    <delete id="deleteScoreDetailsById">
     DELETE FROM gd_score_details WHERE identifier=#{identifier}
   </delete>
 
-  <update id="updateScoreDetailsById" parameterType="com.graduation.demo.common.entity.ScoreDetails">
-    UPDATE gd_score_details SET userid=#{userid},'add/reduce'=#{add/reduce}, score=#{score},
+    <update id="updateScoreDetailsById" parameterType="com.graduation.demo.common.entity.ScoreDetails">
+    UPDATE gd_score_details SET userid=#{userid},`add/reduce`=#{addReduce}, score=#{score},
     checkerid=#{checkerid}, registrarid=#{registrarid}, plead = #{plead}, checkerid2=#{checkerid2},
     approvalid=#{approvalid}
     WHERE identifier= #{identifier}
   </update>
+
+    <select id="selectScoreByNullCheckerId" resultType="com.graduation.demo.common.entity.ScoreDetails">
+      SELECT
+        <include refid="Base_Column_List" />
+        FROM gd_score_details
+      WHERE checkerid IS NULL
+  </select>
+
+    <select id="queryScoreDetailsById" resultType="com.graduation.demo.common.entity.ScoreDetails">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gd_score_details
+        WHERE identifier = #{identifier}
+    </select>
 </mapper>

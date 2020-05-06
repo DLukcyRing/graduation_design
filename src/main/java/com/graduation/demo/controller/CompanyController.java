@@ -31,15 +31,39 @@ public class CompanyController {
 
     @ResponseBody
     @RequestMapping(value = "/index", method = RequestMethod.POST)
-    public String queryCompany(int id){
+    public String queryCompany(String id){
         System.out.println(id);
         Company company = companyService.queryCompanyById(id);
         return company.toString();
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public ModelAndView addCompany() {
-        return new ModelAndView("/company/companyEdit");
+    public ModelAndView addUserView() {
+        ModelAndView model = new ModelAndView("/company/companyAdd");
+//        String companyList = URLEncoder.DEFAULT.encode(JSONArray.toJSONString(companyService.queryList()),Charset.defaultCharset());
+        List<Company> companyList = companyService.queryList();
+        model.addObject("company", companyList);
+        return model;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public Map<String, Object> addUser(@RequestBody Map<String, Object> param) {
+        Map<String, Object> map = new HashMap<>();
+        if (companyService.queryCompanyById((String) param.get("companyid")) != null) {
+            map.put("code", -1);
+            map.put("message", "公司已存在");
+        } else {
+            if (companyService.addCompany(param)) {
+                map.put("code", 0);
+                map.put("message", "新增成功");
+            } else {
+                map.put("code", -1);
+                map.put("message", "新增失败");
+            }
+        }
+        System.out.println();
+        return map;
     }
 
 }

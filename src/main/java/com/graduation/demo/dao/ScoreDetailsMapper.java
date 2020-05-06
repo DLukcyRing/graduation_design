@@ -13,4 +13,6 @@ public interface ScoreDetailsMapper {
     int addScoreDetails(ScoreDetails scoreDetails);
     int deleteScoreDetailsById(String identifier);
     int updateScoreDetailsById(ScoreDetails scoreDetails);
+    List<ScoreDetails> selectScoreByNullCheckerId();
+    ScoreDetails queryScoreDetailsById(int identifier);
 }

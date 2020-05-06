@@ -7,7 +7,7 @@ public class Company implements Serializable {
 
     private String contact;
 
-    private Integer telephone;
+    private String telephone;
 
     private String companyname;
 
@@ -15,9 +15,9 @@ public class Company implements Serializable {
 
     private String address;
 
-    private String registeredCapital;
+    private String registered_capital;
 
-    private String businessScope;
+    private String business_scope;
 
     private static final long serialVersionUID = 1L;
 
@@ -37,11 +37,11 @@ public class Company implements Serializable {
         this.contact = contact;
     }
 
-    public Integer getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(Integer telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
@@ -70,19 +70,19 @@ public class Company implements Serializable {
     }
 
     public String getRegisteredCapital() {
-        return registeredCapital;
+        return registered_capital;
     }
 
-    public void setRegisteredCapital(String registeredCapital) {
-        this.registeredCapital = registeredCapital;
+    public void setRegisteredCapital(String registered_capital) {
+        this.registered_capital = registered_capital;
     }
 
     public String getBusinessScope() {
-        return businessScope;
+        return business_scope;
     }
 
-    public void setBusinessScope(String businessScope) {
-        this.businessScope = businessScope;
+    public void setBusinessScope(String business_scope) {
+        this.business_scope = business_scope;
     }
 
     @Override
@@ -94,8 +94,8 @@ public class Company implements Serializable {
                 ", companyname='" + companyname + '\'' +
                 ", USCC='" + USCC + '\'' +
                 ", address='" + address + '\'' +
-                ", registeredCapital='" + registeredCapital + '\'' +
-                ", businessScope='" + businessScope + '\'' +
+                ", registered_capital='" + registered_capital + '\'' +
+                ", businessScope='" + business_scope + '\'' +
                 '}';
     }
 }

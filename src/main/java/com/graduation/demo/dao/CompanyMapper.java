@@ -12,11 +12,11 @@ public interface CompanyMapper {
 
     int addCompany(Company company);
 
-    int deleteCompanyById(int id);
+    int deleteCompanyById(String id);
 
     int updateCompanyById(Company company);
 
     //public Company queryCompanyByName(String userName);
 
-    Company queryCompanyById(@Param("id")int id);
+    Company queryCompanyById(@Param("id") String id);
 }
