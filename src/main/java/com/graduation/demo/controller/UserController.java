@@ -1,14 +1,21 @@
 package com.graduation.demo.controller;
 
+import com.alibaba.druid.util.Base64;
+import com.alibaba.fastjson.JSONArray;
 import com.github.pagehelper.util.StringUtil;
+import com.graduation.demo.common.entity.Company;
 import com.graduation.demo.common.entity.Ur;
 import com.graduation.demo.common.entity.User;
+import com.graduation.demo.service.CompanyService;
 import com.graduation.demo.service.UrService;
 import com.graduation.demo.service.UserService;
+import org.apache.catalina.util.URLEncoder;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +26,9 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private CompanyService companyService;
 
     @Resource
     private UrService urService;
@@ -36,9 +46,25 @@ public class UserController {
         ModelAndView model = new ModelAndView("/user/userEdit");
         if (StringUtil.isNotEmpty(id)) {
             User data = userService.queryUserById(id);
+            List<Company> company = companyService.queryList();
             model.addObject("data", data);
+            model.addObject("company", company);
         }
         return model;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public Map<String, Object> editByUserId(@RequestBody Map<String, Object> param) {
+        Map<String, Object> map = new HashMap<>();
+        if (userService.editUser(param)) {
+            map.put("code", 0);
+            map.put("message", "修改成功");
+        } else {
+            map.put("code", -1);
+            map.put("message", "修改失败");
+        }
+        return map;
     }
 
     @ResponseBody
@@ -58,23 +84,13 @@ public class UserController {
         return map;
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public Map<String, Object> editByUserId(@RequestBody Map<String, Object> param) {
-        Map<String, Object> map = new HashMap<>();
-        if (userService.editUser(param)) {
-            map.put("code", 0);
-            map.put("message", "修改成功");
-        } else {
-            map.put("code", -1);
-            map.put("message", "修改失败");
-        }
-        return map;
-    }
-
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public ModelAndView addUser() {
-        return new ModelAndView("/user/userAdd");
+    public ModelAndView addUserView() {
+        ModelAndView model = new ModelAndView("/user/userAdd");
+//        String companyList = URLEncoder.DEFAULT.encode(JSONArray.toJSONString(companyService.queryList()),Charset.defaultCharset());
+        List<Company> companyList = companyService.queryList();
+        model.addObject("company", companyList);
+        return model;
     }
 
     @ResponseBody
@@ -93,6 +109,7 @@ public class UserController {
                 map.put("message", "新增失败");
             }
         }
+        System.out.println();
         return map;
     }
 

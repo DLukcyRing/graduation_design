@@ -17,7 +17,7 @@
 
   <select id="queryList" resultType="com.graduation.demo.common.entity.Company">
     SELECT
-    <include refid="Base_Column_List" />
+    *
     FROM gd_company
   </select>
 
@@ -32,7 +32,7 @@
     INSERT INTO gd_company(
     <include refid="Base_Column_List" />
     )
-    VALUES (#{companyid}, #{contact}, #{telephone})
+    VALUES (#{companyid}, #{contact}, #{telephone}, #{name}, #{USCC}, #{address}, #{registered_capital}, #{business_scope})
   </insert>
 
   <delete id="deleteCompanyById">
@@ -48,8 +48,8 @@
     name=#{name},
     USCC=#{USCC},
     address=#{address},
-    registered=#{registered},
-    business=#{business}
+    registered_capital=#{registered_capital},
+    business_scope=#{business_scope}
     WHERE companyid=#{companyid}
   </update>
 </mapper>

@@ -38,7 +38,7 @@ public class CompanyController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public ModelAndView addUser() {
+    public ModelAndView addCompany() {
         return new ModelAndView("/company/companyEdit");
     }
 

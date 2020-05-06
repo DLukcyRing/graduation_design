@@ -37,7 +37,7 @@
                             <p class="card-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
                                 <input hidden="hidden" id="userid" th:value="${data.id}">
                             </font></font></p>
-                            <form class="forms-sample" action="/user/addUser" method="post">
+                            <form class="forms-sample" action="/user/add" method="post">
                                 <div class="form-group">
                                     <label for="exampleInputUsername"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">账户名</font></font></label>
                                     <input type="text" class="form-control" name="exampleInputUsername" id="exampleInputUsername" placeholder="账户名" th:value="${data.account}" readonly>
@@ -85,7 +85,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputCompany"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属公司</font></font></label>
-                                    <input type="text" class="form-control" name="exampleInputCompany" id="exampleInputCompany" placeholder="所属公司">
+                                    <select class="form-control" name="exampleInputCompany" id="exampleInputCompany" placeholder="请选择公司" th:each="company:${company}">
+                                        <option selected>--请选择--</option>
+                                        <option th:value="${company.companyid}" th:text="${company.companyname}"></option>
+                                    </select>
                                 </div>
                                 <button type="button" class="btn btn-primary mr-2" onclick="goSummit()"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提交</font></font></button>
                                 <a href="/user/index">
@@ -100,6 +103,7 @@
         
         <script>
             $(function () {
+
                 var sex = $("#exampleInputSEX").attr("sex");
                 $("#exampleInputSEX").children('option').each(function () {
                     if ($(this).val() == sex) {

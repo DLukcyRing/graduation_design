@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class ScoreDetails implements Serializable {
     private Integer identifier;
 
-    private Integer userid;
+    private String userid;
 
     private Integer addReduce;
 
@@ -31,11 +31,11 @@ public class ScoreDetails implements Serializable {
         this.identifier = identifier;
     }
 
-    public Integer getUserid() {
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(Integer userid) {
+    public void setUserid(String userid) {
         this.userid = userid;
     }
 

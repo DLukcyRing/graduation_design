@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>登记分数信息</title>
+    <link rel="stylesheet" href="../static/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../static/vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/jquery.dataTables.min.css">
+    <link rel="shortcut icon" href="../static/images/favicon.png"/>
+    <link rel="stylesheet" href="../static/css/common.css">
+    <script src="../static/js/jquery-3.3.1.js"></script>
+    <script src="../static/js/jquery.dataTables.js"></script>
+    <script src="../static/vendors/base/vendor.bundle.base.js"></script>
+    <script src="../static/js/off-canvas.js"></script>
+    <script src="../static/js/hoverable-collapse.js"></script>
+    <script src="../static/js/template.js"></script>
+    <script src="../static/js/common.js"></script>
+    <script src="../static/js/jquery.validate.min.js"></script>
+    <script src="../static/js/bootbox.all.min.js"></script>
+</head>
+
+<body>
+<div class="container-scroller">
+    <div id="top"></div>
+    <div class="container-fluid page-body-wrapper">
+        <div id="side"></div>
+        <script>
+            $("#top").load("../common/top.html");
+            $("#side").load("../common/side.html");
+        </script>
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <!--                    <h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">新增用户</font></font></h4>-->
+                    <p class="card-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                    </font></font></p>
+                    <form class="forms-sample" id="user_form">
+                        <div class="form-group">
+                            <label for="exampleInputUserid"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">会计ID</font></font></label>
+                            <input type="text" class="form-control" name="exampleInputUserid" id="exampleInputUserid" placeholder="账户名">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputaddreduce"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">加分/扣分</font></font></label>
+                            <select class="form-control" id="exampleInputaddreduce" name="exampleInputaddreduce" placeholder="性别">
+                                <option selected>--请选择--</option>
+                                <option value="1">加分</option>
+                                <option value="0">扣分</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputscore"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分值</font></font></label>
+                            <input type="text" class="form-control" name="exampleInputscore" id="exampleInputscore" placeholder="密码">
+                        </div>
+
+                        <button type="button" class="btn btn-primary mr-2" onclick="goSummit()"><font style="vertical-align: inherit;" onclick="goSummit()"><font style="vertical-align: inherit;">提交</font></font></button>
+                        <a href="/user/index"><button type="button" class="btn btn-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(function () {
+        Validate.validateForm("user_form");
+    });
+
+    function goSummit() {
+        if ($("#exampleInputUserid").val() && $("#exampleInputaddreduce").val() && $("#exampleInputscore").val()) {
+            $.ajax({
+                url: "/register/index",
+                type: 'post',
+                data: JSON.stringify({
+                    userid: $("#exampleInputUserid").val(),
+                    addreduce: $("#exampleInputaddreduce").val(),
+                    score: $("#exampleInputscore").val()
+                }),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log(data)
+                    if (data.code == 0) {
+                        location.href = "/register/index";
+                    } else {
+                        bootbox.alert({
+                            size: "small",
+                            title: "错误信息",
+                            message: data.message,
+                            callback: function () {
+
+                            }
+                        })
+                    }
+                }
+            })
+        } else {
+            bootbox.alert({
+                size: "small",
+                title: "错误信息",
+                message: "参数不能为空",
+                callback: function () {
+                }
+            })
+        }
+    }
+
+    var Validate = function () {
+        var handlerValidate = function (formId, rules) {
+            $("#" + formId).validate({
+                errorElement: 'span',
+                errorClass: 'errorInfo',
+                errorPlacement: function (error, element) {
+                    element.parent().parent().attr("class", "form-group has-error");
+                    error.insertAfter(element);
+                },
+                rules: {
+                    exampleInputUserid: {
+                        required: true
+                    },
+                    exampleInputaddreduce: {
+                        required: true
+                    },
+                    exampleInputscore: {
+                        required: true
+                    }
+                }
+            });
+        };
+
+        return {
+            validateForm: function (formId, rules) {
+                handlerValidate(formId, rules);
+            }
+        }
+    }();
+</script>
+</body>
+</html>

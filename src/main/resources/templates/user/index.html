@@ -105,6 +105,7 @@
         
         <script type="text/javascript">
             $(function () {
+
                 $.ajax({
                     url: "/role/getRole",
                     async: true,
@@ -127,7 +128,7 @@
                     }
                     if (sex == "1") {
                         $(this).find('td:eq(3)').text("男");
-                    } else if (duty == "0") {
+                    } else if (sex == "0") {
                         $(this).find('td:eq(3)').text("女");
                     }
                 })

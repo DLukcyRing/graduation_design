@@ -81,7 +81,8 @@
     UPDATEBY,
     CREATETIME,
     UPDATETIME,
-    STATE
+    STATE,
+    companyid
     )
     VALUES (
     #{id},
@@ -96,7 +97,8 @@
     #{updateby},
     #{createtime},
     #{updatetime},
-    #{state}
+    #{state},
+    #{companyid}
     )
   </insert>
     
