@@ -47,7 +47,7 @@ public class LoginController {
                 return model;
             }
         }
-        model.setViewName("redirect:/user/index");  //重定向
+        model.setViewName("redirect:/user/blank");  //重定向
         return model;
     }
 
@@ -63,9 +63,8 @@ public class LoginController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/login/getToken", method = RequestMethod.GET)
-    public String getToken() {
-        User user = userService.queryUserByName((String) SecurityUtils.getSubject().getPrincipal());
-        return user.getName();
+    @RequestMapping(value = "/login/getUser", method = RequestMethod.GET)
+    public User getToken() {
+        return userService.queryUserByName((String) SecurityUtils.getSubject().getPrincipal());
     }
 }

@@ -84,10 +84,10 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputCompany"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属公司</font></font></label>
-                                    <select class="form-control" name="exampleInputCompany" id="exampleInputCompany" placeholder="所属公司" th:each="company:${company}">
+                                    <label for="exampleInputCompany"><font style="vertical-align: inherit;">所属公司</font></label>
+                                    <select class="form-control" name="exampleInputCompany" id="exampleInputCompany" placeholder="请选择公司" >
                                         <option selected>--请选择--</option>
-                                        <option th:value="${company.companyid}" th:text="${company.companyname}"></option>
+                                        <option th:each="company:${company}" th:value="${company.companyid}" th:text="${company.companyname}"></option>
                                     </select>
                                 </div>
                                 <button type="button" class="btn btn-primary mr-2" onclick="goSummit()"><font style="vertical-align: inherit;">提交</font></button>

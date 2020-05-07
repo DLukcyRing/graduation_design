@@ -1,6 +1,7 @@
 package com.graduation.demo.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.util.StringUtil;
 import com.graduation.demo.common.entity.Company;
 import com.graduation.demo.common.entity.User;
 import com.graduation.demo.service.CompanyService;
@@ -63,6 +64,23 @@ public class CompanyController {
             }
         }
         System.out.println();
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public Map<String, Object> deleteByCompanyId(@RequestBody Map<String, String> param) {
+        Map<String, Object> map = new HashMap<>();
+        String id = param.get("companyid");
+        if (StringUtil.isNotEmpty(id)) {
+            if (companyService.deleteByCompanyId(id)) {
+                map.put("code", 0);
+                map.put("message", "删除成功");
+            } else {
+                map.put("code", -1);
+                map.put("message", "删除失败");
+            }
+        }
         return map;
     }
 

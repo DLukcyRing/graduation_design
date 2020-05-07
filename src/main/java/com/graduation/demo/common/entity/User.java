@@ -37,6 +37,8 @@ public class User implements Serializable {
 
     private String companyid;
 
+    private String flag;
+
     public String getCompanyid() {
         return companyid;
     }
@@ -160,6 +162,14 @@ public class User implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
     }
 
     public static long getSerialVersionUID() {

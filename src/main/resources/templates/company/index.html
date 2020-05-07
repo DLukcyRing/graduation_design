@@ -82,7 +82,7 @@
                                                         <a href="/company/edit">
                                                             <button class="btn btn-outline-primary btn-fw">修改</button>
                                                         </a>
-                                                        <a href="/company/delete">
+                                                        <a href="javascript:void(0)" onclick="deleteCompany(this)">
                                                             <button class="btn btn-outline-danger btn-fw">删除</button>
                                                         </a>
                                                     </td>
@@ -99,7 +99,33 @@
             </div>
         </div>
         <script>
-        
+
+            function deleteCompany(obj) {
+                var companyid = $(obj).closest('tr').attr("data-id");
+                $.ajax({
+                    url: "/company/delete",
+                    type: 'post',
+                    data: JSON.stringify({
+                        companyid: companyid
+                    }),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (data) {
+                        if (data.code == 0) {
+                            location.reload();
+                        } else {
+                            bootbox.alert({
+                                size: "small",
+                                title: "错误信息",
+                                message: data.message,
+                                callback: function () {
+
+                                }
+                            })
+                        }
+                    }
+                });
+            }
         </script>
     </body>
 </html>

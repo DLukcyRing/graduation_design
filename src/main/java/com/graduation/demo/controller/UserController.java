@@ -41,6 +41,14 @@ public class UserController {
         return model;
     }
 
+    @RequestMapping(value = "/blank", method = RequestMethod.GET)
+    public ModelAndView blank() {
+        ModelAndView model = new ModelAndView("/user/blank");
+        List<User> data = userService.queryList();
+        model.addObject("data", data);
+        return model;
+    }
+
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView editByUserId(@RequestParam(value = "userId") String id) {
         ModelAndView model = new ModelAndView("/user/userEdit");
