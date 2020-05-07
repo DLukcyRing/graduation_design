@@ -78,13 +78,20 @@
         SELECT
         <include refid="Base_Column_List" />
         FROM gd_score_details
-        WHERE userid = #{userid}
+        WHERE userid = #{userid} and checkerid is not null and checkerid != '0'  and (checkerid2 != '0' or checkerid2 is null) and ((approvalid is not null and approvalid != '0') or (score <![CDATA[ < ]]> 10))
     </select>
 
     <select id="selectScoreByUserid" resultType="com.graduation.demo.common.entity.ScoreDetails">
         SELECT
         <include refid="Base_Column_List" />
         FROM gd_score_details
-        WHERE checkerid is not null and checkerid != '0'  and ((approvalid is not null and approvalid != '0') or (score <![CDATA[ < ]]> 10)) and plead is null
+        WHERE userid = #{userid} and checkerid is not null and checkerid != '0'  and ((approvalid is not null and approvalid != '0') or (score <![CDATA[ < ]]> 10)) and plead is null
     </select>
+
+<!--    <select id="selectAllScoreByUserid" resultType="com.graduation.demo.common.entity.ScoreDetails">-->
+<!--        SELECT-->
+<!--        <include refid="Base_Column_List" />-->
+<!--        FROM gd_score_details-->
+<!--        WHERE checkerid is not null and checkerid != '0'  and ((approvalid is not null and approvalid != '0') or (score <![CDATA[ < ]]> 10)) and plead is null-->
+<!--    </select>-->
 </mapper>

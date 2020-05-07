@@ -182,8 +182,9 @@ public class ScoreDetailsController {
     @RequestMapping(value = "/plead", method = RequestMethod.GET)
     public ModelAndView PleadGet(){
         ModelAndView model = new ModelAndView("/scores/plead");
-
-        List<ScoreDetails> scoreDetails= scoreService.selectScoreByUserid();
+        String token = (String) SecurityUtils.getSubject().getPrincipal();
+        User userId = userService.queryUserByName(token);
+        List<ScoreDetails> scoreDetails= scoreService.selectScoreByUserid(userId.getId());
 
         List<String> usererName = new LinkedList<>();
 //        List<String> registerName = new LinkedList<>();
@@ -223,5 +224,23 @@ public class ScoreDetailsController {
         return map;
     }
 
+    @RequestMapping(value = "/historyscoredetails", method = RequestMethod.GET)
+    public ModelAndView historyscoredetailsGet(){
+        ModelAndView model = new ModelAndView("/scores/historyscoredetails");
+        String token = (String) SecurityUtils.getSubject().getPrincipal();
+        User userId = userService.queryUserByName(token);
+        List<ScoreDetails> scoreDetails= scoreService.queryScoreDetailsByUserId(userId.getId());
 
+        List<String> usererName = new LinkedList<>();
+//        List<String> registerName = new LinkedList<>();
+
+        for (ScoreDetails o:scoreDetails) {
+//            registerName.add(userService.queryUserById(o.getRegistrarid()).getName());
+            usererName.add(userService.queryUserById(o.getUserid()).getName());
+        }
+        model.addObject("scoredetails",scoreDetails);
+        model.addObject("userername",usererName);
+//        model.addObject("registername",registerName);
+        return model;
+    }
 }

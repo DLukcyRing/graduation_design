@@ -20,7 +20,7 @@ public interface ScoreDetailsMapper {
 
     List<ScoreDetails> selectScoreByPlead();
 
-    ScoreDetails queryScoreDetailsByUserId(String  id);
+    List<ScoreDetails> queryScoreDetailsByUserId(String  id);
 
-    List<ScoreDetails> selectScoreByUserid();
+    List<ScoreDetails> selectScoreByUserid(String id);
 }
