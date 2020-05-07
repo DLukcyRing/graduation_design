@@ -16,7 +16,5 @@ public interface CompanyMapper {
 
     int updateCompanyById(Company company);
 
-    //public Company queryCompanyByName(String userName);
-
     Company queryCompanyById(@Param("id") String id);
 }

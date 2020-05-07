@@ -87,7 +87,6 @@ public class UserController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addUserView() {
         ModelAndView model = new ModelAndView("/user/userAdd");
-//        String companyList = URLEncoder.DEFAULT.encode(JSONArray.toJSONString(companyService.queryList()),Charset.defaultCharset());
         List<Company> companyList = companyService.queryList();
         model.addObject("company", companyList);
         return model;

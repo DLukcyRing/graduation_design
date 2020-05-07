@@ -32,45 +32,18 @@ public class CompanyService {
         Company company = new Company();
         company.setCompanyid(IdGen.getUUID().replaceAll("-", ""));
         company.setContact((String) param.get("contact"));
-        company.setTelephone((String) param.get("telephone"));
+        company.setTelephone(Integer.valueOf((String) param.get("telephone")));
         company.setCompanyname((String) param.get("companyname"));
         company.setUSCC((String) param.get("USCC"));
         company.setAddress((String) param.get("address"));
-        company.setRegisteredCapital((String) param.get("registered_capital"));
-        company.setBusinessScope((String) param.get("business_scope"));
-//        String token = (String) SecurityUtils.getSubject().getPrincipal();
-//        Company companyId = companyMapper.queryUserByName(token);
-//        user.setCreateby(userId.getId());
-//        user.setUpdateby(userId.getId());
-//        user.setCreatetime(new Date());
-//        user.setUpdatetime(new Date());
-//        if (param.get("company") != null) {
-//            user.setCompanyid((String) param.get("company"));
-//        }
+        company.setRegisteredCapital((String) param.get("registered"));
+        company.setBusinessScope((String) param.get("businessscope"));
         return companyMapper.addCompany(company) > 0;
     }
 
     public Company queryCompanyById(String id) {
         return companyMapper.queryCompanyById(id);
     }
-
-//    public boolean editUser(Map<String, Object> param) {
-//        User user = userMapper.queryUserById((String) param.get("userid"));
-//        user.setAccount((String) param.get("username"));
-//        user.setPassword(Md5Utils.encode((String) param.get("password")));
-//        user.setName((String) param.get("name"));
-//        user.setDuty((String) param.get("duty"));
-//        user.setEdu((String) param.get("edu"));
-//        user.setSex((String) param.get("sex"));
-//        String token = (String) SecurityUtils.getSubject().getPrincipal();
-//        User userId = userMapper.queryUserByName(token);
-//        user.setUpdateby(userId.getId());
-//        user.setUpdatetime(new Date());
-//        if (param.get("company") != null) {
-//            user.setCompanyid((String) param.get("company"));
-//        }
-//        return userMapper.editUserById(user) > 0;
-//    }
 
     public boolean deleteByCompanyId(String id) {
         return companyMapper.deleteCompanyById(id) > 0;

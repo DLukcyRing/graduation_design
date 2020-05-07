@@ -32,7 +32,7 @@
     INSERT INTO gd_company(
     <include refid="Base_Column_List" />
     )
-    VALUES (#{companyid}, #{contact}, #{telephone}, #{name}, #{USCC}, #{address}, #{registered_capital}, #{business_scope})
+    VALUES (#{companyid}, #{contact}, #{telephone}, #{companyname}, #{USCC}, #{address}, #{registered_capital}, #{business_scope})
   </insert>
 
   <delete id="deleteCompanyById">
@@ -45,7 +45,7 @@
     companyid=#{companyid},
     contact=#{contact},
     telephone=#{telephone},
-    name=#{name},
+    name=#{companyname},
     USCC=#{USCC},
     address=#{address},
     registered_capital=#{registered_capital},

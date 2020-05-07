@@ -7,7 +7,7 @@ public class Company implements Serializable {
 
     private String contact;
 
-    private String telephone;
+    private int telephone;
 
     private String companyname;
 
@@ -37,11 +37,11 @@ public class Company implements Serializable {
         this.contact = contact;
     }
 
-    public String getTelephone() {
+    public int getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(String telephone) {
+    public void setTelephone(int telephone) {
         this.telephone = telephone;
     }
 
