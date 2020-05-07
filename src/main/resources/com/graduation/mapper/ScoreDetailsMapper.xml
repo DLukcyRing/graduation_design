@@ -31,7 +31,7 @@
     </select>
 
     <insert id="addScoreDetails" parameterType="com.graduation.demo.common.entity.ScoreDetails">
-    INSERT INTO gd_score_details(userid, `add/reduce`, score, registrarid)
+    INSERT INTO gd_score_details(userid, addReduce, score, registrarid)
     VALUES (#{userid}, #{addReduce}, #{score}, #{registrarid})
   </insert>
 
@@ -40,7 +40,7 @@
   </delete>
 
     <update id="updateScoreDetailsById" parameterType="com.graduation.demo.common.entity.ScoreDetails">
-    UPDATE gd_score_details SET userid=#{userid},`add/reduce`=#{addReduce}, score=#{score},
+    UPDATE gd_score_details SET userid=#{userid},addReduce=#{addReduce}, score=#{score},
     checkerid=#{checkerid}, registrarid=#{registrarid}, plead = #{plead}, checkerid2=#{checkerid2},
     approvalid=#{approvalid}
     WHERE identifier= #{identifier}

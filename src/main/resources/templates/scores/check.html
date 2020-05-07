@@ -99,6 +99,17 @@
         <!--</div>-->
         
         <script type="text/javascript">
+            $(function () {
+                $("#_table").children('tbody').children('tr').each(function () {
+                    var addReduce = $(this).find('td:eq(3)').text();
+                    if (addReduce == "1") {
+                        $(this).find('td:eq(3)').text("加分");
+                    } else if (addReduce == "0") {
+                        $(this).find('td:eq(3)').text("扣分");
+                    }
+                })
+
+            }
             function scorePass(obj) {
                 var id = $(obj).closest('tr').attr("data-id");
                 $.ajax({
