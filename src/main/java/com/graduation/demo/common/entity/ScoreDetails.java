@@ -15,7 +15,7 @@ public class ScoreDetails implements Serializable {
 
     private String registrarid;
 
-    private Integer plead;
+    private String plead;
 
     private String checkerid2;
 
@@ -71,11 +71,11 @@ public class ScoreDetails implements Serializable {
         this.registrarid = registrarid;
     }
 
-    public Integer getPlead() {
+    public String getPlead() {
         return plead;
     }
 
-    public void setPlead(Integer plead) {
+    public void setPlead(String plead) {
         this.plead = plead;
     }
 

@@ -57,7 +57,14 @@
         SELECT
         <include refid="Base_Column_List" />
         FROM gd_score_details
-        WHERE score > 10 and checkerid is not null and checkerid != '0' and checkerid2 is null
+        WHERE score > 10 and checkerid is not null and checkerid != '0' and approvalid is null
+    </select>
+
+    <select id="selectScoreByPlead" resultType="com.graduation.demo.common.entity.ScoreDetails">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gd_score_details
+        WHERE plead = 1 and checkerid2 is null
     </select>
 
     <select id="queryScoreDetailsById" resultType="com.graduation.demo.common.entity.ScoreDetails">
@@ -65,5 +72,19 @@
         <include refid="Base_Column_List" />
         FROM gd_score_details
         WHERE identifier = #{identifier}
+    </select>
+
+    <select id="queryScoreDetailsByUserId" resultType="com.graduation.demo.common.entity.ScoreDetails">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gd_score_details
+        WHERE userid = #{userid}
+    </select>
+
+    <select id="selectScoreByUserid" resultType="com.graduation.demo.common.entity.ScoreDetails">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gd_score_details
+        WHERE checkerid is not null and checkerid != '0' and approvalid is not null and approvalid != '0' and plead is null
     </select>
 </mapper>

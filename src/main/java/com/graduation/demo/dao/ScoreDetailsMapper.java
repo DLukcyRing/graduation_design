@@ -17,4 +17,10 @@ public interface ScoreDetailsMapper {
     ScoreDetails queryScoreDetailsById(int identifier);
 
     List<ScoreDetails> selectScoreByScore10();
+
+    List<ScoreDetails> selectScoreByPlead();
+
+    ScoreDetails queryScoreDetailsByUserId(String  id);
+
+    List<ScoreDetails> selectScoreByUserid();
 }

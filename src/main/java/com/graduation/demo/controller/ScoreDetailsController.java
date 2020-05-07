@@ -97,7 +97,7 @@ public class ScoreDetailsController {
     public ModelAndView check2Get(){
         ModelAndView model = new ModelAndView("/scores/check2");
 
-        List<ScoreDetails> scoreDetails= scoreService.selectScoreByScore10();
+        List<ScoreDetails> scoreDetails= scoreService.selectScoreByPlead();
 
         List<String> usererName = new LinkedList<>();
         List<String> registerName = new LinkedList<>();
@@ -135,4 +135,93 @@ public class ScoreDetailsController {
         }
         return map;
     }
+
+    @RequestMapping(value = "/approval", method = RequestMethod.GET)
+    public ModelAndView approvalGet(){
+        ModelAndView model = new ModelAndView("/scores/approval");
+
+        List<ScoreDetails> scoreDetails= scoreService.selectScoreByScore10();
+
+        List<String> usererName = new LinkedList<>();
+        List<String> registerName = new LinkedList<>();
+
+        for (ScoreDetails o:scoreDetails) {
+            registerName.add(userService.queryUserById(o.getRegistrarid()).getName());
+            usererName.add(userService.queryUserById(o.getUserid()).getName());
+        }
+        model.addObject("scoredetails",scoreDetails);
+        model.addObject("userername",usererName);
+        model.addObject("registername",registerName);
+        return model;
+    }
+
+    @RequestMapping(value = "/approval", method = RequestMethod.POST)
+    public Map<String, Object> approvalPost(@RequestBody Map<String, Object> param){
+        Map<String, Object> map = new HashMap<>();
+        String check = (String) param.get("approval");
+        int id = Integer.parseInt((String) param.get("id"));
+        ScoreDetails scoreDetails = scoreService.queryScoreDetailsById(id);
+        String token = (String) SecurityUtils.getSubject().getPrincipal();
+        User userId = userService.queryUserByName(token);
+
+        if (check.equals("success")){
+            scoreDetails.setApprovalid(userId.getId());
+        }else {
+            scoreDetails.setApprovalid("0");
+        }
+        if(scoreService.updateScoreDetailsById(scoreDetails)==1){
+            map.put("code", 0);
+            map.put("message", "添加成功");
+        }else {
+            map.put("code", -1);
+            map.put("message", "添加失败");
+        }
+        return map;
+    }
+
+    @RequestMapping(value = "/plead", method = RequestMethod.GET)
+    public ModelAndView PleadGet(){
+        ModelAndView model = new ModelAndView("/scores/plead");
+
+        List<ScoreDetails> scoreDetails= scoreService.selectScoreByUserid();
+
+        List<String> usererName = new LinkedList<>();
+//        List<String> registerName = new LinkedList<>();
+
+        for (ScoreDetails o:scoreDetails) {
+//            registerName.add(userService.queryUserById(o.getRegistrarid()).getName());
+            usererName.add(userService.queryUserById(o.getUserid()).getName());
+        }
+        model.addObject("scoredetails",scoreDetails);
+        model.addObject("userername",usererName);
+//        model.addObject("registername",registerName);
+        return model;
+    }
+
+    @RequestMapping(value = "/plead", method = RequestMethod.POST)
+    public Map<String, Object> PleadPost(@RequestBody Map<String, Object> param){
+        Map<String, Object> map = new HashMap<>();
+        String check = (String) param.get("plead");
+        int id = Integer.parseInt((String) param.get("id"));
+        ScoreDetails scoreDetails = scoreService.queryScoreDetailsById(id);
+        String token = (String) SecurityUtils.getSubject().getPrincipal();
+        User userId = userService.queryUserByName(token);
+//        ScoreDetails scoreDetails = scoreService.queryScoreDetailsByUserId(userId.getId());
+
+        if (check.equals("success")){
+            scoreDetails.setPlead("1");
+        }else {
+            scoreDetails.setPlead("0");
+        }
+        if(scoreService.updateScoreDetailsById(scoreDetails)==1){
+            map.put("code", 0);
+            map.put("message", "提交成功");
+        }else {
+            map.put("code", -1);
+            map.put("message", "提交失败");
+        }
+        return map;
+    }
+
+
 }

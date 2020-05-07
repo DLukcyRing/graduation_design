@@ -55,4 +55,13 @@ public class ScoreService {
 
     public List<ScoreDetails> selectScoreByScore10() {return scoreDetailsMapper.selectScoreByScore10();
     }
+
+    public List<ScoreDetails> selectScoreByPlead() {return scoreDetailsMapper.selectScoreByPlead();
+    }
+
+    public ScoreDetails queryScoreDetailsByUserId(String id) {return scoreDetailsMapper.queryScoreDetailsByUserId(id);
+    }
+
+    public List<ScoreDetails> selectScoreByUserid() {return scoreDetailsMapper.selectScoreByUserid();
+    }
 }
