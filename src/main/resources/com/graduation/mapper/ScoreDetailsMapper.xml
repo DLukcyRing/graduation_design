@@ -57,7 +57,7 @@
         SELECT
         <include refid="Base_Column_List" />
         FROM gd_score_details
-        WHERE score > 10 and checkerid is not null and checkerid != '0' and approvalid is null
+        WHERE score >= 10 and checkerid is not null and checkerid != '0' and approvalid is null
     </select>
 
     <select id="selectScoreByPlead" resultType="com.graduation.demo.common.entity.ScoreDetails">
@@ -85,6 +85,6 @@
         SELECT
         <include refid="Base_Column_List" />
         FROM gd_score_details
-        WHERE checkerid is not null and checkerid != '0' and approvalid is not null and approvalid != '0' and plead is null
+        WHERE checkerid is not null and checkerid != '0'  and ((approvalid is not null and approvalid != '0') or (score <![CDATA[ < ]]> 10)) and plead is null
     </select>
 </mapper>
