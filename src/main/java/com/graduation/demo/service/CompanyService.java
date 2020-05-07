@@ -32,7 +32,7 @@ public class CompanyService {
         Company company = new Company();
         company.setCompanyid(IdGen.getUUID().replaceAll("-", ""));
         company.setContact((String) param.get("contact"));
-        company.setTelephone(Integer.valueOf((String) param.get("telephone")));
+        company.setTelephone((String) param.get("telephone"));
         company.setCompanyname((String) param.get("companyname"));
         company.setUSCC((String) param.get("USCC"));
         company.setAddress((String) param.get("address"));
