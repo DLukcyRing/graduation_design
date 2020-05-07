@@ -53,6 +53,13 @@
       WHERE checkerid IS NULL
   </select>
 
+    <select id="selectScoreByScore10" resultType="com.graduation.demo.common.entity.ScoreDetails">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM gd_score_details
+        WHERE score > 10 and checkerid is not null and checkerid != '0' and checkerid2 is null
+    </select>
+
     <select id="queryScoreDetailsById" resultType="com.graduation.demo.common.entity.ScoreDetails">
         SELECT
         <include refid="Base_Column_List" />

@@ -52,4 +52,7 @@ public class ScoreService {
 
     public List<ScoreDetails> selectScoreByNullCheckerId (){ return scoreDetailsMapper.selectScoreByNullCheckerId(); }
     public ScoreDetails queryScoreDetailsById(int id){return scoreDetailsMapper.queryScoreDetailsById(id);}
+
+    public List<ScoreDetails> selectScoreByScore10() {return scoreDetailsMapper.selectScoreByScore10();
+    }
 }

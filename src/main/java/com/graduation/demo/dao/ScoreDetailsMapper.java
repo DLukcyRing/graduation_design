@@ -15,4 +15,6 @@ public interface ScoreDetailsMapper {
     int updateScoreDetailsById(ScoreDetails scoreDetails);
     List<ScoreDetails> selectScoreByNullCheckerId();
     ScoreDetails queryScoreDetailsById(int identifier);
+
+    List<ScoreDetails> selectScoreByScore10();
 }

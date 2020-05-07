@@ -95,9 +95,9 @@ public class ScoreDetailsController {
 
     @RequestMapping(value = "/check2", method = RequestMethod.GET)
     public ModelAndView check2Get(){
-        ModelAndView model = new ModelAndView("/scores/check");
+        ModelAndView model = new ModelAndView("/scores/check2");
 
-        List<ScoreDetails> scoreDetails= scoreService.selectScoreByNullCheckerId();
+        List<ScoreDetails> scoreDetails= scoreService.selectScoreByScore10();
 
         List<String> usererName = new LinkedList<>();
         List<String> registerName = new LinkedList<>();
@@ -122,9 +122,9 @@ public class ScoreDetailsController {
         User userId = userService.queryUserByName(token);
 
         if (check.equals("success")){
-            scoreDetails.setCheckerid(userId.getId());
+            scoreDetails.setCheckerid2(userId.getId());
         }else {
-            scoreDetails.setCheckerid("0");
+            scoreDetails.setCheckerid2("0");
         }
         if(scoreService.updateScoreDetailsById(scoreDetails)==1){
             map.put("code", 0);
