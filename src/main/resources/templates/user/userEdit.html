@@ -33,7 +33,7 @@
                 <div class="col-md-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">修改用户</font></font></h4>
+                            <h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">修改用户信息</font></font></h4>
                             <p class="card-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
                                 <input hidden="hidden" id="userid" th:value="${data.id}">
                             </font></font></p>
@@ -83,11 +83,18 @@
                                         <option value="0">否</option>
                                     </select>
                                 </div>
+<!--                                <div class="form-group">-->
+<!--                                    <label for="exampleInputCompany"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属公司</font></font></label>-->
+<!--                                    <select class="form-control" name="exampleInputCompany" id="exampleInputCompany" placeholder="请选择公司" th:each="company:${company}">-->
+<!--                                        <option selected>&#45;&#45;请选择&#45;&#45;</option>-->
+<!--                                        <option th:value="${company.companyid}" th:text="${company.companyname}"></option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
                                 <div class="form-group">
-                                    <label for="exampleInputCompany"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属公司</font></font></label>
-                                    <select class="form-control" name="exampleInputCompany" id="exampleInputCompany" placeholder="请选择公司" th:each="company:${company}">
+                                    <label for="exampleInputCompany"><font style="vertical-align: inherit;">所属公司</font></label>
+                                    <select class="form-control" name="exampleInputCompany" id="exampleInputCompany" placeholder="请选择公司" >
                                         <option selected>--请选择--</option>
-                                        <option th:value="${company.companyid}" th:text="${company.companyname}"></option>
+                                        <option th:each="company:${company}" th:value="${company.companyid}" th:text="${company.companyname}"></option>
                                     </select>
                                 </div>
                                 <button type="button" class="btn btn-primary mr-2" onclick="goSummit()"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提交</font></font></button>

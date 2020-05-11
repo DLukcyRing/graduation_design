@@ -10,6 +10,7 @@ import com.graduation.demo.service.CompanyService;
 import com.graduation.demo.service.UrService;
 import com.graduation.demo.service.UserService;
 import org.apache.catalina.util.URLEncoder;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -134,6 +135,33 @@ public class UserController {
             }
         }
         return "success";
+    }
+
+    @RequestMapping(value = "/edit2", method = RequestMethod.GET)
+    public ModelAndView editByUserId2() {
+        ModelAndView model = new ModelAndView("/user/userEdit");
+        String token = (String) SecurityUtils.getSubject().getPrincipal();
+        User userId = userService.queryUserByName(token);
+        if (StringUtil.isNotEmpty(userId.getId())) {
+            List<Company> company = companyService.queryList();
+            model.addObject("data", userId);
+            model.addObject("company", company);
+        }
+        return model;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/edit2", method = RequestMethod.POST)
+    public Map<String, Object> editByUserId2(@RequestBody Map<String, Object> param) {
+        Map<String, Object> map = new HashMap<>();
+        if (userService.editUser(param)) {
+            map.put("code", 0);
+            map.put("message", "修改成功");
+        } else {
+            map.put("code", -1);
+            map.put("message", "修改失败");
+        }
+        return map;
     }
 
     @ResponseBody
