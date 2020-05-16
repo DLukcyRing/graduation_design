@@ -99,17 +99,39 @@
         <!--</div>-->
         
         <script type="text/javascript">
-            // $(function () {
-            //     $("#_table").children('tbody').children('tr').each(function () {
-            //         var addReduce = $(this).find('td:eq(3)').text();
-            //         if (addReduce == "1") {
-            //             $(this).find('td:eq(3)').text("加分");
-            //         } else if (addReduce == "0") {
-            //             $(this).find('td:eq(3)').text("扣分");
-            //         }
-            //     })
-            //
-            // }
+            $(function () {
+                $("table").children('tbody').children('tr').each(function () {
+                    var addReduce = $(this).find('td:eq(3)').text();
+                    if (addReduce == "1") {
+                        $(this).find('td:eq(3)').text("加分");
+                    } else if (addReduce == "0") {
+                        $(this).find('td:eq(3)').text("扣分");
+                    }
+                })
+
+            }
+            $(function () {
+
+                var sex = $("#exampleInputSEX").attr("sex");
+                $("#exampleInputSEX").children('option').each(function () {
+                    if ($(this).val() == sex) {
+                        $(this).attr("selected", "selected")
+                    }
+                })
+                var edu = $("#exampleInputEDU").attr("edu");
+                $("#exampleInputEDU").children('option').each(function () {
+                    if ($(this).val() == edu) {
+                        $(this).attr("selected", "selected")
+                    }
+                })
+                var duty = $("#exampleInputDuty").attr("duty");
+                $("#exampleInputDuty").children('option').each(function () {
+                    if ($(this).val() == duty) {
+                        $(this).attr("selected", "selected")
+                    }
+                })
+                Validate.validateForm("user_form");
+            })
             function scorePass(obj) {
                 var id = $(obj).closest('tr').attr("data-id");
                 $.ajax({

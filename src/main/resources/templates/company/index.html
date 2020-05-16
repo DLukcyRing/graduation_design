@@ -66,6 +66,7 @@
                                                     <th>地址</th>
                                                     <th>注册资金</th>
                                                     <th>经营范围</th>
+                                                    <th>操作</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -79,9 +80,9 @@
                                                     <td th:text="${resource.registeredCapital}"></td>
                                                     <td th:text="${resource.businessScope}"></td>
                                                     <td>
-                                                        <a href="/company/edit">
-                                                            <button class="btn btn-outline-primary btn-fw">修改</button>
-                                                        </a>
+<!--                                                        <a href="/company/edit">-->
+<!--                                                            <button class="btn btn-outline-primary btn-fw">修改</button>-->
+<!--                                                        </a>-->
                                                         <a href="javascript:void(0)" onclick="deleteCompany(this)">
                                                             <button class="btn btn-outline-danger btn-fw">删除</button>
                                                         </a>
